@@ -1,7 +1,8 @@
 import React from "react";
+import ChoiceMarkAuto from "./Components/ChoiceMarkAuto/ChoiceMarkAuto";
 
 function App() {
-  return <div className="App"></div>;
+  return <ChoiceMarkAuto />;
 }
 
 export default App;

@@ -1,19 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-//import { Test } from './ChoiceMarkAuto.styles';
+import React from "react";
+import PropTypes from "prop-types";
+import { List } from "./ChoiceMarkAuto.styles";
 
-const ChoiceMarkAuto = (props) => (
-  <div className="ChoiceMarkAutoWrapper">
-    Test content
-  </div>
-);
-
-ChoiceMarkAuto.propTypes = {
-  // bla: PropTypes.string,
+const ChoiceMarkAuto = () => {
+  return <List />;
 };
 
-ChoiceMarkAuto.defaultProps = {
-  // bla: 'test',
-};
+// ChoiceMarkAuto.propTypes = {
+//   // bla: PropTypes.string,
+// };
+
+// ChoiceMarkAuto.defaultProps = {
+//   // bla: 'test',
+// };
 
 export default ChoiceMarkAuto;
