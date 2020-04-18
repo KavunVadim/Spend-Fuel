@@ -1,10 +1,14 @@
 import React from "react";
 import "./App.css";
-
-import ControlledExpansionPanels from "./Components/ControlledExpansionPanels/ControlledExpansionPanels";
+import ChoceMarcCar from "./Components/ChoceMarcCar/ChoceMarcCar";
+import ArrCars from "./db/arrCars.json";
 
 function App() {
-  return <ControlledExpansionPanels />;
+  return (
+    <>
+      <ChoceMarcCar arrCars={ArrCars} />
+    </>
+  );
 }
 
 export default App;
