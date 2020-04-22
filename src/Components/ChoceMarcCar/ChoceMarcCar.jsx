@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Grid from "@material-ui/core/Grid";
-import { Typography, CardMedia, ExpansionPanel } from "@material-ui/core";
+
+import {
+  Typography,
+  CardMedia,
+  ExpansionPanel,
+  ExpansionPanelSummary,
+  ExpansionPanelDetails,
+} from "@material-ui/core";
 import { v4 as uuidv4 } from "uuid";
 
 const ChoceMarcCar = ({ arrCars }) => {
   const [expanded, setExpanded] = useState(false);
+  const [car, setCar] = useState({});
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -16,7 +22,7 @@ const ChoceMarcCar = ({ arrCars }) => {
 
   const useStyles = makeStyles((theme) => ({
     cover: {
-      width: 150,
+      width: 120,
       paddingRight: 30,
     },
     title: {
@@ -25,14 +31,26 @@ const ChoceMarcCar = ({ arrCars }) => {
     },
     nameLogo: {},
   }));
+
   const classes = useStyles();
-  const addNewPanel = () => {};
+
+  const filter = (e) => {
+    const model = arrCars.map((el) => el.model);
+    console.log(model);
+
+    //    const car = arrCars.map((el) => {
+    //   return el.model.find((name) => name.name === e.currentTarget.textContent);
+    // });
+
+    // console.log(e.currentTarget);
+  };
+
   return (
     <>
-      {arrCars.map((el) => (
+      {arrCars.map((el, index) => (
         <ExpansionPanel
-          expanded={expanded === "panel1"}
-          onChange={handleChange("panel1")}
+          expanded={expanded === `panel${index + 1}`}
+          onChange={handleChange(`panel${index + 1}`)}
         >
           <ExpansionPanelSummary
             children
@@ -51,15 +69,14 @@ const ChoceMarcCar = ({ arrCars }) => {
                 className={classes.cover}
                 image={el.logo}
                 component="img"
-                title="chevrole"
               />
 
               <h2 className={classes.title}>{el.car}</h2>
             </Grid>
           </ExpansionPanelSummary>
 
-          {arrCars.map((el) => (
-            <ExpansionPanelDetails>
+          {el.model.map((el) => (
+            <ExpansionPanelDetails onClick={filter} id={el.name}>
               <Grid
                 className={classes.grid}
                 container
@@ -70,7 +87,6 @@ const ChoceMarcCar = ({ arrCars }) => {
                   className={classes.cover}
                   image={el.img}
                   component="img"
-                  title="chevrole"
                 />
                 <Typography className={classes.title} component="h2">
                   {el.name}
