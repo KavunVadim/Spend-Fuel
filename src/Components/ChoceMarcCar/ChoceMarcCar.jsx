@@ -12,14 +12,11 @@ import {
 } from "@material-ui/core";
 import { v4 as uuidv4 } from "uuid";
 
-const ChoceMarcCar = ({ arrCars }) => {
+const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
   const [expanded, setExpanded] = useState(false);
-  const [car, setCar] = useState({});
-
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-
   const useStyles = makeStyles((theme) => ({
     cover: {
       width: 120,
@@ -31,19 +28,7 @@ const ChoceMarcCar = ({ arrCars }) => {
     },
     nameLogo: {},
   }));
-
   const classes = useStyles();
-
-  const filter = (e) => {
-    const model = arrCars.map((el) => el.model);
-    console.log(model);
-
-    //    const car = arrCars.map((el) => {
-    //   return el.model.find((name) => name.name === e.currentTarget.textContent);
-    // });
-
-    // console.log(e.currentTarget);
-  };
 
   return (
     <>
@@ -75,8 +60,11 @@ const ChoceMarcCar = ({ arrCars }) => {
             </Grid>
           </ExpansionPanelSummary>
 
-          {el.model.map((el) => (
-            <ExpansionPanelDetails onClick={filter} id={el.name}>
+          {el.model.map((marc) => (
+            <ExpansionPanelDetails
+              onClick={() => getCarMarc(marc)}
+              id={marc.name}
+            >
               <Grid
                 className={classes.grid}
                 container
@@ -85,11 +73,11 @@ const ChoceMarcCar = ({ arrCars }) => {
               >
                 <CardMedia
                   className={classes.cover}
-                  image={el.img}
+                  image={marc.img}
                   component="img"
                 />
                 <Typography className={classes.title} component="h2">
-                  {el.name}
+                  {marc.name}
                 </Typography>
               </Grid>
             </ExpansionPanelDetails>

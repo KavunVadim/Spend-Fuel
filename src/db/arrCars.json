@@ -12,6 +12,7 @@
                 "img": "https://eugene-skoda.ru/wp-content/uploads/2018/04/superb.png"
             },
             {
+                "id": "2",
                 "name": "skoda-octavia",
                 "baseRate": 0.076,
                 "operationInKiev": 0.15,
@@ -20,6 +21,7 @@
                 "img": "https://tuning.com.ua/c/8600-medium_default/skoda-octavia1996-2010.jpg"
             },
             {
+                "id": "3",
                 "name": "skoda-fabia",
                 "baseRate": 0.076,
                 "operationInKiev": 0.15,
@@ -34,6 +36,7 @@
         "car": "volkswagen",
         "logo": "https://s3.amazonaws.com/static.revolutionparts.com/assets/images/volkswagen.png",
         "model": [{
+            "id": "4",
             "name": "volkswagen-caddy",
             "baseRate": 0.076,
             "operationInKiev": 0.15,
@@ -46,6 +49,7 @@
         "car": "chevrolet",
         "logo": "http://pngimg.com/uploads/chevrolet/%D1%81hevrolet_PNG157.png",
         "model": [{
+            "id": "5",
             "name": "chevrolet-Lacetti",
             "baseRate": 0.076,
             "operationInKiev": 0.15,
