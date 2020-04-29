@@ -7,6 +7,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Checkbox,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -21,6 +22,11 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  containerCheckbox: {
+    display: "flex",
+    alignItems: "center",
+    fontSize: 20,
+  },
 }));
 
 const formInitialState = {
@@ -31,7 +37,7 @@ const formInitialState = {
 
 const InputRun = ({ car, carTotalAll }) => {
   const [form, setForm] = useState(formInitialState);
-  console.log(car);
+
   const inputHandler = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -39,15 +45,17 @@ const InputRun = ({ car, carTotalAll }) => {
   };
 
   const formSubmit = (e) => {
-    e.preventDefault();
     const { age, oldMileage, newMileage } = form;
+
     const totalCar = {
       age,
       oldMileage,
       newMileage,
+      baseRate: car.baseRate,
+      operationInKiev: car.operationInKiev,
+      operationalAllowance: car.operationalAllowance,
     };
-    console.log(totalCar);
-    setForm(formInitialState);
+    carTotalAll(totalCar);
   };
 
   const { age, oldMileage, newMileage } = form;
@@ -55,8 +63,17 @@ const InputRun = ({ car, carTotalAll }) => {
   const classes = useStyles();
 
   return (
-    <FormControl fullWidth className={classes.form} onSubmit={formSubmit}>
-      <InputLabel id="demo-simple-select-filled-label">Вік А/М</InputLabel>
+    <FormControl fullWidth className={classes.form}>
+      {/* <div className={classes.containerCheckbox}>
+        <Checkbox
+          value={age}
+          size="medium"
+          color="primary"
+          inputProps={{ "aria-label": "secondary checkbox" }}
+        />{" "}
+        <span>Напружені умови</span>
+      </div> */}
+      <InputLabel id="demo-simple-select-label">Вік А\М</InputLabel>
       <Select
         labelId="demo-simple-select-filled-label"
         id="demo-simple-select-filled"
@@ -66,7 +83,9 @@ const InputRun = ({ car, carTotalAll }) => {
         onChange={inputHandler}
       >
         {car.ageCar.map((el) => (
-          <MenuItem value={el}> {el}</MenuItem>
+          <MenuItem key={el} value={el}>
+            {el}
+          </MenuItem>
         ))}
       </Select>
 
@@ -75,7 +94,6 @@ const InputRun = ({ car, carTotalAll }) => {
         label="Старий пробіг"
         variant="outlined"
         autoFocus
-        placeholder="Старий пробіг"
         onChange={inputHandler}
         name="oldMileage"
         value={oldMileage}
@@ -89,10 +107,11 @@ const InputRun = ({ car, carTotalAll }) => {
         value={newMileage}
       />
       <Button
-        onClick={formSubmit}
+        type="submit"
         className={classes.text}
         variant="contained"
         color="primary"
+        onClick={formSubmit}
       >
         Далі
       </Button>

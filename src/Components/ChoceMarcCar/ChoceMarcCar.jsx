@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Grid from "@material-ui/core/Grid";
 
@@ -10,7 +10,6 @@ import {
   ExpansionPanelSummary,
   ExpansionPanelDetails,
 } from "@material-ui/core";
-import { v4 as uuidv4 } from "uuid";
 
 const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
   const [expanded, setExpanded] = useState(false);
@@ -36,6 +35,7 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
         <ExpansionPanel
           expanded={expanded === `panel${index + 1}`}
           onChange={handleChange(`panel${index + 1}`)}
+          key={el.logo}
         >
           <ExpansionPanelSummary
             children
@@ -63,7 +63,7 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
           {el.model.map((marc) => (
             <ExpansionPanelDetails
               onClick={() => getCarMarc(marc)}
-              id={marc.name}
+              key={marc.id}
             >
               <Grid
                 className={classes.grid}
