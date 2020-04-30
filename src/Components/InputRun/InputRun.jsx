@@ -50,7 +50,7 @@ const InputRun = ({ car, carTotalAll }) => {
 
   const formSubmit = (e) => {
     const { age, age1, operNad, oldMileage, newMileage } = form;
-    storage.save(oldMileage, oldMileage);
+
     const totalCar = {
       age: age1 || operNad,
       oldMileage,
@@ -80,72 +80,75 @@ const InputRun = ({ car, carTotalAll }) => {
   const classes = useStyles();
 
   return (
-    <FormControl fullWidth className={classes.form}>
-      <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Вік А\М</InputLabel>
-        <Select
-          labelId="demo-simple-select-filled-label"
-          id="1"
-          variant="outlined"
-          name="age1"
-          value={age1}
-          onChange={inputHandler}
-          disabled={operNad ? true : false}
-        >
-          {car.ageCar.map((el) => (
-            <MenuItem key={el} value={el}>
-              {`${el} %`}
+    <form onSubmit={formSubmit}>
+      <FormControl fullWidth className={classes.form}>
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel id="demo-simple-select-label">Вік А\М</InputLabel>
+          <Select
+            labelId="demo-simple-select-filled-label"
+            id="1"
+            variant="outlined"
+            name="age1"
+            value={age1}
+            onChange={inputHandler}
+            disabled={operNad ? true : false}
+          >
+            {car.ageCar.map((el) => (
+              <MenuItem key={el} value={el}>
+                {`${el} %`}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel id="demo-simple-select-label">Опер Надбавка</InputLabel>
+          <Select
+            labelId="demo-simple-select-filled-label"
+            id="2"
+            variant="outlined"
+            name="operNad"
+            value={operNad}
+            onChange={inputHandler}
+            disabled={age1 ? true : false}
+          >
+            <MenuItem key={54} value={0.1}>
+              10 %
             </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+          </Select>
+        </FormControl>
 
-      <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Опер Надбавка</InputLabel>
-        <Select
-          labelId="demo-simple-select-filled-label"
-          id="2"
+        <TextField
+          id="1"
+          label="Старий пробіг"
           variant="outlined"
-          name="operNad"
-          value={operNad}
+          autoFocus
           onChange={inputHandler}
-          disabled={age1 ? true : false}
+          name="oldMileage"
+          value={oldMileage}
+          type="number"
+          required
+        />
+        <TextField
+          id="2"
+          label="Новий пробіг"
+          variant="outlined"
+          onChange={inputHandler}
+          name="newMileage"
+          value={newMileage}
+          type="number"
+          required
+        />
+        <Button
+          type="submit"
+          className={classes.text}
+          variant="contained"
+          color="primary"
         >
-          <MenuItem key={54} value={0.1}>
-            10 %
-          </MenuItem>
-        </Select>
+          Далі
+        </Button>
       </FormControl>
-
-      <TextField
-        id="1"
-        label="Старий пробіг"
-        variant="outlined"
-        autoFocus
-        onChange={inputHandler}
-        name="oldMileage"
-        value={oldMileage}
-        type="number"
-      />
-      <TextField
-        id="2"
-        label="Новий пробіг"
-        variant="outlined"
-        onChange={inputHandler}
-        name="newMileage"
-        value={newMileage}
-        type="number"
-      />
-      <Button
-        type="submit"
-        className={classes.text}
-        variant="contained"
-        color="primary"
-        onClick={formSubmit}
-      >
-        Далі
-      </Button>
-    </FormControl>
+    </form>
   );
 };
 
