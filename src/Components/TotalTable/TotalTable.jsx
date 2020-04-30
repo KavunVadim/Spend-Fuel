@@ -64,7 +64,7 @@ const TotalTable = ({ finishTotal }) => {
   const base = passedKm * baseRate;
   const kiev = passedKm * baseRate * operationInKiev;
   const wance = (passedKm - 10) * baseRate * operationalAllowance;
-  const toAge = passedKm * baseRate * age;
+  const toAge = (age === 0.1 ? passedKm - 10 : passedKm) * baseRate * age;
 
   const all = base + kiev + wance + toAge;
 
@@ -73,18 +73,26 @@ const TotalTable = ({ finishTotal }) => {
   };
 
   const rows = [
-    createData(`Базова норма ${baseRate}`, `${passedKm}`, `${base.toFixed(2)}`),
     createData(
-      `Екс.по м.Києву ${operationInKiev}`,
+      `Базова норма ${baseRate}%`,
+      `${passedKm}`,
+      `${base.toFixed(2)}`
+    ),
+    createData(
+      `Екс.по м.Києву ${operationInKiev}%`,
       `${passedKm}`,
       `${kiev.toFixed(2)}`
     ),
     createData(
-      `Опер. Надбавка ${operationalAllowance}`,
+      `Опер. Надбавка ${operationalAllowance}%`,
       `${passedKm - 10}`,
       `${wance.toFixed(2)}`
     ),
-    createData(`Вік А\м ${age}`, `${passedKm}`, `${toAge.toFixed(2)}`),
+    createData(
+      `${age === 0.1 ? "Напружені умови" : "Вік Ам"} ${age}%`,
+      `${age === 0.1 ? passedKm - 10 : passedKm}`,
+      `${toAge.toFixed(2)}`
+    ),
   ];
 
   return (

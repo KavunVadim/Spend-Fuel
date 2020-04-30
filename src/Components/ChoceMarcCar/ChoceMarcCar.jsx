@@ -19,7 +19,7 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
   const useStyles = makeStyles((theme) => ({
     cover: {
       width: 120,
-      paddingRight: 30,
+      paddingRight: 35,
     },
     title: {
       fontWeight: 800,
@@ -56,7 +56,7 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
                 component="img"
               />
 
-              <h2 className={classes.title}>{el.car}</h2>
+              <h2 className={classes.title}>{el.car.toUpperCase()}</h2>
             </Grid>
           </ExpansionPanelSummary>
 

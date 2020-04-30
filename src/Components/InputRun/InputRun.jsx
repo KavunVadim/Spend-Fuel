@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   TextField,
@@ -9,6 +9,8 @@ import {
   MenuItem,
   Checkbox,
 } from "@material-ui/core";
+
+import storage from "../../helpers/storage";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -31,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
 
 const formInitialState = {
   age: "",
+  age1: "",
+  operNad: "",
   oldMileage: "",
   newMileage: "",
 };
@@ -45,10 +49,10 @@ const InputRun = ({ car, carTotalAll }) => {
   };
 
   const formSubmit = (e) => {
-    const { age, oldMileage, newMileage } = form;
-
+    const { age, age1, operNad, oldMileage, newMileage } = form;
+    storage.save(oldMileage, oldMileage);
     const totalCar = {
-      age,
+      age: age1 || operNad,
       oldMileage,
       newMileage,
       baseRate: car.baseRate,
@@ -58,53 +62,79 @@ const InputRun = ({ car, carTotalAll }) => {
     carTotalAll(totalCar);
   };
 
-  const { age, oldMileage, newMileage } = form;
+  useEffect(() => {
+    const arrContacts = storage.get("carTotalAll");
+    if (!arrContacts) {
+      storage.save("carTotalAll", []);
+      return;
+    }
+    setForm(arrContacts);
+  }, []);
+
+  useEffect(() => {
+    storage.save("carTotalAll", { oldMileage, newMileage });
+  }, [form]);
+
+  const { age1, operNad, oldMileage, newMileage } = form;
 
   const classes = useStyles();
 
   return (
     <FormControl fullWidth className={classes.form}>
-      {/* <div className={classes.containerCheckbox}>
-        <Checkbox
-          value={age}
-          size="medium"
-          color="primary"
-          inputProps={{ "aria-label": "secondary checkbox" }}
-        />{" "}
-        <span>Напружені умови</span>
-      </div> */}
-      <InputLabel id="demo-simple-select-label">Вік А\М</InputLabel>
-      <Select
-        labelId="demo-simple-select-filled-label"
-        id="demo-simple-select-filled"
-        variant="outlined"
-        name="age"
-        value={age}
-        onChange={inputHandler}
-      >
-        {car.ageCar.map((el) => (
-          <MenuItem key={el} value={el}>
-            {el}
+      <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel id="demo-simple-select-label">Вік А\М</InputLabel>
+        <Select
+          labelId="demo-simple-select-filled-label"
+          id="1"
+          variant="outlined"
+          name="age1"
+          value={age1}
+          onChange={inputHandler}
+          disabled={operNad ? true : false}
+        >
+          {car.ageCar.map((el) => (
+            <MenuItem key={el} value={el}>
+              {`${el} %`}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
+      <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel id="demo-simple-select-label">Опер Надбавка</InputLabel>
+        <Select
+          labelId="demo-simple-select-filled-label"
+          id="2"
+          variant="outlined"
+          name="operNad"
+          value={operNad}
+          onChange={inputHandler}
+          disabled={age1 ? true : false}
+        >
+          <MenuItem key={54} value={0.1}>
+            10 %
           </MenuItem>
-        ))}
-      </Select>
+        </Select>
+      </FormControl>
 
       <TextField
-        id="outlined-basic"
+        id="1"
         label="Старий пробіг"
         variant="outlined"
         autoFocus
         onChange={inputHandler}
         name="oldMileage"
         value={oldMileage}
+        type="number"
       />
       <TextField
-        id="outlined-basic"
+        id="2"
         label="Новий пробіг"
         variant="outlined"
         onChange={inputHandler}
         name="newMileage"
         value={newMileage}
+        type="number"
       />
       <Button
         type="submit"
