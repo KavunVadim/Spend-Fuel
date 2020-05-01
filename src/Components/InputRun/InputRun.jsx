@@ -7,7 +7,6 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  Checkbox,
 } from "@material-ui/core";
 
 import storage from "../../helpers/storage";
@@ -24,15 +23,9 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
-  containerCheckbox: {
-    display: "flex",
-    alignItems: "center",
-    fontSize: 20,
-  },
 }));
 
 const formInitialState = {
-  age: "",
   age1: "",
   operNad: "",
   oldMileage: "",
@@ -48,8 +41,8 @@ const InputRun = ({ car, carTotalAll }) => {
     setForm({ ...form, [name]: value });
   };
 
-  const formSubmit = (e) => {
-    const { age, age1, operNad, oldMileage, newMileage } = form;
+  const formSubmit = () => {
+    const { age1, operNad, oldMileage, newMileage } = form;
 
     const totalCar = {
       age: age1 || operNad,
@@ -59,6 +52,10 @@ const InputRun = ({ car, carTotalAll }) => {
       operationInKiev: car.operationInKiev,
       operationalAllowance: car.operationalAllowance,
     };
+    if (form.newMileage < form.oldMileage) {
+      alert("Nooooo");
+      return;
+    }
     carTotalAll(totalCar);
   };
 
@@ -72,7 +69,7 @@ const InputRun = ({ car, carTotalAll }) => {
   }, []);
 
   useEffect(() => {
-    storage.save("carTotalAll", { oldMileage, newMileage });
+    storage.save("carTotalAll", { ...form });
   }, [form]);
 
   const { age1, operNad, oldMileage, newMileage } = form;
@@ -81,43 +78,45 @@ const InputRun = ({ car, carTotalAll }) => {
 
   return (
     <form onSubmit={formSubmit}>
-      <FormControl fullWidth className={classes.form}>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="demo-simple-select-label">Вік А\М</InputLabel>
-          <Select
-            labelId="demo-simple-select-filled-label"
-            id="1"
-            variant="outlined"
-            name="age1"
-            value={age1}
-            onChange={inputHandler}
-            disabled={operNad ? true : false}
-          >
-            {car.ageCar.map((el) => (
-              <MenuItem key={el} value={el}>
-                {`${el} %`}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="demo-simple-select-label">Опер Надбавка</InputLabel>
-          <Select
-            labelId="demo-simple-select-filled-label"
-            id="2"
-            variant="outlined"
-            name="operNad"
-            value={operNad}
-            onChange={inputHandler}
-            disabled={age1 ? true : false}
-          >
-            <MenuItem key={54} value={0.1}>
-              10 %
+      <FormControl fullWidth variant="outlined" className={classes.form}>
+        <InputLabel id="demo-simple-select-label">Вік А\М</InputLabel>
+        <Select
+          labelId="demo-simple-select-filled-label"
+          id="1"
+          variant="outlined"
+          name="age1"
+          value={age1}
+          onChange={inputHandler}
+          disabled={operNad ? true : false}
+        >
+          <MenuItem key={26}>Відмінити</MenuItem>
+          {car.ageCar.map((el) => (
+            <MenuItem key={el} value={el}>
+              {`${el} %`}
             </MenuItem>
-          </Select>
-        </FormControl>
+          ))}
+        </Select>
+      </FormControl>
 
+      <FormControl fullWidth variant="outlined" className={classes.form}>
+        <InputLabel id="demo-simple-select-label">Напружені умови</InputLabel>
+        <Select
+          labelId="demo-simple-select-filled-label"
+          id="2"
+          variant="outlined"
+          name="operNad"
+          value={operNad}
+          onChange={inputHandler}
+          disabled={age1 ? true : false}
+        >
+          <MenuItem key={53}>Відмінити</MenuItem>
+          <MenuItem key={54} value={0.1}>
+            10 %
+          </MenuItem>
+        </Select>
+      </FormControl>
+
+      <FormControl fullWidth className={classes.form}>
         <TextField
           id="1"
           label="Старий пробіг"

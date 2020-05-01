@@ -21,6 +21,7 @@ function App() {
 
   const carTotalAll = (totalCar) => {
     setFinishTotal({ ...totalCar });
+
     setTotalTableBloc(true);
     setMileageBloc(false);
   };
