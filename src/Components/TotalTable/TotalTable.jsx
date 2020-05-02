@@ -69,7 +69,9 @@ const TotalTable = ({ finishTotal }) => {
       : (passedKm - 10) * baseRate * operationalAllowance;
 
   const toAge =
-    passedKm <= 10 ? passedKm * baseRate * age : passedKm - 10 * baseRate * age;
+    passedKm <= 10
+      ? passedKm * baseRate * age
+      : (passedKm - 10) * baseRate * age;
 
   const all = base + kiev + wance + toAge;
 
