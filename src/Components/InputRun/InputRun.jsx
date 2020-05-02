@@ -41,7 +41,8 @@ const InputRun = ({ car, carTotalAll }) => {
     setForm({ ...form, [name]: value });
   };
 
-  const formSubmit = () => {
+  const formSubmit = (e) => {
+    e.preventDefault();
     const { age1, operNad, oldMileage, newMileage } = form;
 
     const totalCar = {
@@ -52,10 +53,7 @@ const InputRun = ({ car, carTotalAll }) => {
       operationInKiev: car.operationInKiev,
       operationalAllowance: car.operationalAllowance,
     };
-    if (form.newMileage < form.oldMileage) {
-      alert("Nooooo");
-      return;
-    }
+
     carTotalAll(totalCar);
   };
 
