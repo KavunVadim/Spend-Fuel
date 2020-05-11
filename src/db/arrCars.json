@@ -4,7 +4,7 @@
 
     "model": [{
         "id": "1",
-        "name": "skoda-superb",
+        "name": "superb",
         "baseRate": 0.089,
         "operationInKiev": 0.15,
         "operationalAllowance": 0.25,
@@ -13,7 +13,7 @@
       },
       {
         "id": "2",
-        "name": "skoda-octavia",
+        "name": "octavia",
         "baseRate": 0.085,
         "operationInKiev": 0.15,
         "operationalAllowance": 0.25,
@@ -22,7 +22,7 @@
       },
       {
         "id": "3",
-        "name": "skoda-fabia",
+        "name": "fabia",
         "baseRate": 0.06,
         "operationInKiev": 0.15,
         "operationalAllowance": 0.25,
@@ -36,7 +36,7 @@
     "logo": "https://s3.amazonaws.com/static.revolutionparts.com/assets/images/volkswagen.png",
     "model": [{
       "id": "4",
-      "name": "volkswagen-caddy",
+      "name": "caddy",
       "baseRate": 0.076,
       "operationInKiev": 0.15,
       "operationalAllowance": 0.25,
@@ -49,7 +49,7 @@
     "logo": "http://pngimg.com/uploads/chevrolet/%D1%81hevrolet_PNG157.png",
     "model": [{
       "id": "5",
-      "name": "chevrolet-Lacetti",
+      "name": "Lacetti",
       "baseRate": 0.083,
       "operationInKiev": 0.15,
       "operationalAllowance": 0.25,

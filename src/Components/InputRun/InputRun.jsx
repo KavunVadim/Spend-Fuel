@@ -79,6 +79,7 @@ const InputRun = ({ car, carTotalAll }) => {
       <FormControl fullWidth variant="outlined" className={classes.form}>
         <InputLabel id="demo-simple-select-label">Вік А\М</InputLabel>
         <Select
+          className={classes.input}
           labelId="demo-simple-select-filled-label"
           id="1"
           variant="outlined"

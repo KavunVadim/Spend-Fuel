@@ -26,8 +26,6 @@ function App() {
     setMileageBloc(false);
   };
 
-  const cal = () => {};
-
   return (
     <>
       {choceMarcCarBloc && (

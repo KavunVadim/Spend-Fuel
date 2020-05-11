@@ -17,15 +17,21 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
     setExpanded(isExpanded ? panel : false);
   };
   const useStyles = makeStyles((theme) => ({
-    cover: {
-      width: 120,
-      paddingRight: 35,
+    logo: {
+      width: 75,
+      paddingRight: "2em",
     },
     title: {
       fontWeight: 800,
       fontSize: 18,
     },
-    nameLogo: {},
+    PanelMy: {
+      height: 100,
+    },
+    car: {
+      width: 150,
+      paddingRight: "1em",
+    },
   }));
   const classes = useStyles();
 
@@ -39,7 +45,7 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
         >
           <ExpansionPanelSummary
             children
-            className={classes.Panel}
+            className={classes.PanelMy}
             aria-controls="panel1bh-content"
             id="panel1bh-header"
             expandIcon={<ExpandMoreIcon />}
@@ -51,7 +57,7 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
               direction="row"
             >
               <CardMedia
-                className={classes.cover}
+                className={classes.logo}
                 image={el.logo}
                 component="img"
               />
@@ -72,12 +78,12 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
                 direction="row"
               >
                 <CardMedia
-                  className={classes.cover}
+                  className={classes.car}
                   image={marc.img}
                   component="img"
                 />
                 <Typography className={classes.title} component="h2">
-                  {marc.name}
+                  {marc.name.toUpperCase()}
                 </Typography>
               </Grid>
             </ExpansionPanelDetails>
