@@ -49,7 +49,6 @@ const useStyles = makeStyles({
 
 const TotalTable = ({ finishTotal }) => {
   const classes = useStyles();
-
   const {
     age,
     baseRate,
@@ -58,18 +57,21 @@ const TotalTable = ({ finishTotal }) => {
     operationInKiev,
     operationalAllowance,
   } = finishTotal;
-  console.log(finishTotal);
-  const passedKm = newMileage - oldMileage;
 
-  const base = passedKm * baseRate;
-  const kiev = passedKm * baseRate * operationInKiev;
+  //----------------------------CAL----------------------------------
+  const wanceCal = () => {
+    if (passedKm <= 10) {
+      return passedKm * baseRate * operationalAllowance;
+    } else if (passedKm > 10 && baseRate === 0.06) {
+      return (passedKm - 2) * baseRate * operationalAllowance;
+    } else if (passedKm > 10 && passedKm < 15) {
+      return (passedKm - 8) * baseRate * operationalAllowance;
+    } else {
+      return (passedKm - 10) * baseRate * operationalAllowance;
+    }
+  };
 
-  const wance =
-    passedKm <= 10
-      ? passedKm * baseRate * operationalAllowance
-      : (passedKm - 10) * baseRate * operationalAllowance;
-
-  const Age = () => {
+  const ageCal = () => {
     if (passedKm > 10 && age === 0.1 && baseRate === 0.06) {
       return (passedKm - 2) * baseRate * age;
     } else if (passedKm > 10 && age === 0.1) {
@@ -78,9 +80,9 @@ const TotalTable = ({ finishTotal }) => {
       return passedKm * baseRate * age;
     }
   };
-  const toAge = Age();
 
-  const littleKm = () => {
+  //--------------------------KM----------------------------------------
+  const kmAge = () => {
     if (passedKm > 10 && age === 0.1 && baseRate === 0.06) {
       return passedKm - 2;
     } else if (passedKm > 10 && age === 0.1) {
@@ -90,7 +92,31 @@ const TotalTable = ({ finishTotal }) => {
     }
   };
 
+  const kmWance = () => {
+    if (passedKm > 10 && baseRate === 0.06) {
+      return passedKm - 2;
+    } else if (passedKm > 10) {
+      return passedKm - 10;
+    } else {
+      return passedKm;
+    }
+  };
+  //--------------------------------------------------------------------------
+  const passedKm = newMileage - oldMileage;
+  const base = passedKm * baseRate;
+  const kiev = passedKm * baseRate * operationInKiev;
+  const wance = wanceCal();
+  const toAge = ageCal();
+
   const all = base + kiev + wance + toAge;
+
+  console.log(`км${passedKm}`);
+  console.log(`Норма л${base}`);
+  console.log(kiev);
+  console.log(wance);
+  console.log(toAge);
+  console.log(all);
+  console.log(finishTotal);
 
   const createData = (name, km, lit) => {
     return { name, km, lit };
@@ -109,12 +135,12 @@ const TotalTable = ({ finishTotal }) => {
     ),
     createData(
       `Опер. Надбавка ${operationalAllowance}%`,
-      `${passedKm <= 10 ? passedKm : passedKm - 10}`,
+      `${kmWance()}`,
       `${wance.toFixed(2)}`
     ),
     createData(
       `${age === 0.1 ? "Напружені умови" : "Вік Ам"} ${age}%`,
-      `${littleKm()}`,
+      `${kmAge()}`,
       `${toAge.toFixed(2)}`
     ),
   ];

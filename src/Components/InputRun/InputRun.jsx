@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+
 import {
   TextField,
   Button,
@@ -7,6 +8,8 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  CardMedia,
+  Typography,
 } from "@material-ui/core";
 
 import storage from "../../helpers/storage";
@@ -18,10 +21,26 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   text: {
-    height: 50,
+    height: 60,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
+  },
+  containerSelect: {
+    display: "flex",
+  },
+  carImg: {
+    width: 150,
+    paddingRight: 10,
+  },
+  containerCarImg: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  nameCar: {
+    fontWeight: 600,
+    fontSize: 30,
   },
 }));
 
@@ -76,45 +95,52 @@ const InputRun = ({ car, carTotalAll }) => {
 
   return (
     <form onSubmit={formSubmit}>
-      <FormControl fullWidth variant="outlined" className={classes.form}>
-        <InputLabel id="demo-simple-select-label">Вік А\М</InputLabel>
-        <Select
-          className={classes.input}
-          labelId="demo-simple-select-filled-label"
-          id="1"
-          variant="outlined"
-          name="age1"
-          value={age1}
-          onChange={inputHandler}
-          disabled={operNad ? true : false}
-        >
-          <MenuItem key={26}>Відмінити</MenuItem>
-          {car.ageCar.map((el) => (
-            <MenuItem key={el} value={el}>
-              {`${el} %`}
+      <div className={classes.containerCarImg}>
+        <CardMedia className={classes.carImg} image={car.img} component="img" />
+        <Typography className={classes.nameCar} component="h2">
+          {car.name.toUpperCase()}
+        </Typography>
+      </div>
+      <div className={classes.containerSelect}>
+        <FormControl fullWidth variant="outlined" className={classes.form}>
+          <InputLabel id="demo-simple-select-label">Вік А\М</InputLabel>
+          <Select
+            className={classes.input}
+            labelId="demo-simple-select-filled-label"
+            id="1"
+            variant="outlined"
+            name="age1"
+            value={age1}
+            onChange={inputHandler}
+            disabled={operNad ? true : false}
+          >
+            <MenuItem key={26}>Відмінити</MenuItem>
+            {car.ageCar.map((el) => (
+              <MenuItem key={el} value={el}>
+                {`${el} %`}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <FormControl fullWidth variant="outlined" className={classes.form}>
+          <InputLabel id="demo-simple-select-label">Напружені умови</InputLabel>
+          <Select
+            labelId="demo-simple-select-filled-label"
+            id="2"
+            variant="outlined"
+            name="operNad"
+            value={operNad}
+            onChange={inputHandler}
+            disabled={age1 ? true : false}
+          >
+            <MenuItem key={53}>Відмінити</MenuItem>
+            <MenuItem key={54} value={0.1}>
+              10 %
             </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-
-      <FormControl fullWidth variant="outlined" className={classes.form}>
-        <InputLabel id="demo-simple-select-label">Напружені умови</InputLabel>
-        <Select
-          labelId="demo-simple-select-filled-label"
-          id="2"
-          variant="outlined"
-          name="operNad"
-          value={operNad}
-          onChange={inputHandler}
-          disabled={age1 ? true : false}
-        >
-          <MenuItem key={53}>Відмінити</MenuItem>
-          <MenuItem key={54} value={0.1}>
-            10 %
-          </MenuItem>
-        </Select>
-      </FormControl>
-
+          </Select>
+        </FormControl>
+      </div>
       <FormControl fullWidth className={classes.form}>
         <TextField
           id="1"
