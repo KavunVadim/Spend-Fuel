@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -58,30 +58,39 @@ const TotalTable = ({ finishTotal }) => {
     operationInKiev,
     operationalAllowance,
   } = finishTotal;
-
+  console.log(finishTotal);
   const passedKm = newMileage - oldMileage;
 
   const base = passedKm * baseRate;
   const kiev = passedKm * baseRate * operationInKiev;
+
   const wance =
     passedKm <= 10
       ? passedKm * baseRate * operationalAllowance
       : (passedKm - 10) * baseRate * operationalAllowance;
 
-  const toAge =
-    passedKm <= 10
-      ? passedKm * baseRate * age
-      : (passedKm - 10) * baseRate * age;
-
-  const all = base + kiev + wance + toAge;
+  const Age = () => {
+    if (passedKm > 10 && age === 0.1 && baseRate === 0.06) {
+      return (passedKm - 2) * baseRate * age;
+    } else if (passedKm > 10 && age === 0.1) {
+      return (passedKm - 10) * baseRate * age;
+    } else {
+      return passedKm * baseRate * age;
+    }
+  };
+  const toAge = Age();
 
   const littleKm = () => {
-    if (passedKm > 10 && age === 0.1) {
+    if (passedKm > 10 && age === 0.1 && baseRate === 0.06) {
+      return passedKm - 2;
+    } else if (passedKm > 10 && age === 0.1) {
       return passedKm - 10;
     } else {
       return passedKm;
     }
   };
+
+  const all = base + kiev + wance + toAge;
 
   const createData = (name, km, lit) => {
     return { name, km, lit };
