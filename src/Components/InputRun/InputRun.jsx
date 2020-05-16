@@ -55,7 +55,7 @@ const formInitialState = {
 };
 
 const notify = () =>
-  toast.error(`Оберіть (А\м чи Напружені умови) !`, {
+  toast.error(`Оберіть (Вік чи Напружені умови) !`, {
     position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,
