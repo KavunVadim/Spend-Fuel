@@ -122,10 +122,11 @@ const InputRun = ({ car, carTotalAll }) => {
       </div>
       <div className={classes.containerSelect}>
         <FormControl fullWidth variant="outlined" className={classes.form}>
-          <InputLabel id="demo-simple-select-label">Вік А\М</InputLabel>
+          <InputLabel id="demo-simple-select-outlined-label">
+            Вік А\М
+          </InputLabel>
           <Select
-            className={classes.input}
-            labelId="demo-simple-select-filled-label"
+            label="Вік А\М"
             id="1"
             variant="outlined"
             name="age1"
@@ -145,7 +146,7 @@ const InputRun = ({ car, carTotalAll }) => {
         <FormControl fullWidth variant="outlined" className={classes.form}>
           <InputLabel id="demo-simple-select-label">Напружені умови</InputLabel>
           <Select
-            // labelId="demo-simple-select-filled-label"
+            label="Напружені умови"
             id="2"
             variant="outlined"
             name="operNad"
@@ -160,6 +161,7 @@ const InputRun = ({ car, carTotalAll }) => {
           </Select>
         </FormControl>
       </div>
+
       <FormControl fullWidth className={classes.form}>
         <TextField
           id="1"
