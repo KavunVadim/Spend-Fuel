@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   TextField,
@@ -13,6 +15,7 @@ import {
 } from "@material-ui/core";
 
 import storage from "../../helpers/storage";
+import { dark } from "@material-ui/core/styles/createPalette";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -51,6 +54,17 @@ const formInitialState = {
   newMileage: "",
 };
 
+const notify = () =>
+  toast.error(`Оберіть (А\м чи Напружені умови) !`, {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+
 const InputRun = ({ car, carTotalAll }) => {
   const [form, setForm] = useState(formInitialState);
 
@@ -62,6 +76,7 @@ const InputRun = ({ car, carTotalAll }) => {
 
   const formSubmit = (e) => {
     e.preventDefault();
+
     const { age1, operNad, oldMileage, newMileage } = form;
 
     const totalCar = {
@@ -72,7 +87,10 @@ const InputRun = ({ car, carTotalAll }) => {
       operationInKiev: car.operationInKiev,
       operationalAllowance: car.operationalAllowance,
     };
-
+    if (!totalCar.age) {
+      notify();
+      return;
+    }
     carTotalAll(totalCar);
   };
 
@@ -95,6 +113,7 @@ const InputRun = ({ car, carTotalAll }) => {
 
   return (
     <form onSubmit={formSubmit}>
+      <ToastContainer />
       <div className={classes.containerCarImg}>
         <CardMedia className={classes.carImg} image={car.img} component="img" />
         <Typography className={classes.nameCar} component="h2">
@@ -114,7 +133,7 @@ const InputRun = ({ car, carTotalAll }) => {
             onChange={inputHandler}
             disabled={operNad ? true : false}
           >
-            <MenuItem key={26}>Відмінити</MenuItem>
+            <MenuItem value="">Відмінити</MenuItem>
             {car.ageCar.map((el) => (
               <MenuItem key={el} value={el}>
                 {`${el} %`}
@@ -126,7 +145,7 @@ const InputRun = ({ car, carTotalAll }) => {
         <FormControl fullWidth variant="outlined" className={classes.form}>
           <InputLabel id="demo-simple-select-label">Напружені умови</InputLabel>
           <Select
-            labelId="demo-simple-select-filled-label"
+            // labelId="demo-simple-select-filled-label"
             id="2"
             variant="outlined"
             name="operNad"
@@ -134,7 +153,7 @@ const InputRun = ({ car, carTotalAll }) => {
             onChange={inputHandler}
             disabled={age1 ? true : false}
           >
-            <MenuItem key={53}>Відмінити</MenuItem>
+            <MenuItem value="">Відмінити</MenuItem>
             <MenuItem key={54} value={0.1}>
               10 %
             </MenuItem>

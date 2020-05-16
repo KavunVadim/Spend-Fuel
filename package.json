@@ -2,6 +2,7 @@
   "name": "calculator",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Diz1111Diz.github.io/calculator",
   "dependencies": {
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
@@ -13,6 +14,7 @@
     "react-dom": "^16.13.1",
     "react-loader-spinner": "^3.1.14",
     "react-scripts": "3.4.1",
+    "react-toastify": "^5.5.0",
     "uuid": "^7.0.3"
   },
   "scripts": {

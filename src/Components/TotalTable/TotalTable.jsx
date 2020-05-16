@@ -110,13 +110,7 @@ const TotalTable = ({ finishTotal }) => {
 
   const all = base + kiev + wance + toAge;
 
-  console.log(`км${passedKm}`);
-  console.log(`Норма л${base}`);
-  console.log(kiev);
-  console.log(wance);
-  console.log(toAge);
-  console.log(all);
-  console.log(finishTotal);
+ 
 
   const createData = (name, km, lit) => {
     return { name, km, lit };
