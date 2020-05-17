@@ -12,6 +12,7 @@ import {
   MenuItem,
   CardMedia,
   Typography,
+  Container,
 } from "@material-ui/core";
 
 import storage from "../../helpers/storage";
@@ -55,7 +56,7 @@ const formInitialState = {
 };
 
 const notify = () =>
-  toast.error(`Оберіть (Вік чи Напружені умови) !`, {
+  toast.error(`🚗 Оберіть (Вік чи Напружені умови) !`, {
     position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,
@@ -120,7 +121,11 @@ const InputRun = ({ car, carTotalAll }) => {
           {car.name.toUpperCase()}
         </Typography>
       </div>
-      <div className={classes.containerSelect}>
+      <Container
+        className={classes.containerSelect}
+        component="div"
+        style={{ padding: 0 }}
+      >
         <FormControl fullWidth variant="outlined" className={classes.form}>
           <InputLabel id="demo-simple-select-outlined-label">
             Вік А\М
@@ -160,7 +165,7 @@ const InputRun = ({ car, carTotalAll }) => {
             </MenuItem>
           </Select>
         </FormControl>
-      </div>
+      </Container>
 
       <FormControl fullWidth className={classes.form}>
         <TextField

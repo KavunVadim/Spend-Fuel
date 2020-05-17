@@ -2,7 +2,7 @@
   "name": "calculator",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Diz1111Diz.github.io/calculator",
+  // "homepage": "https://Diz1111Diz.github.io/calculator",
   "dependencies": {
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
