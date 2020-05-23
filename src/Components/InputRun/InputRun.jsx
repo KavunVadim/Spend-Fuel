@@ -53,6 +53,7 @@ const formInitialState = {
   operNad: "",
   oldMileage: "",
   newMileage: "",
+  minusMilagecustom: "",
 };
 
 const notify = () =>
@@ -77,13 +78,12 @@ const InputRun = ({ car, carTotalAll }) => {
 
   const formSubmit = (e) => {
     e.preventDefault();
-
-    const { age1, operNad, oldMileage, newMileage } = form;
-
+    const { age1, operNad, oldMileage, newMileage, minusMilagecustom } = form;
     const totalCar = {
       age: age1 || operNad,
       oldMileage,
       newMileage,
+      minusMilagecustom,
       baseRate: car.baseRate,
       operationInKiev: car.operationInKiev,
       operationalAllowance: car.operationalAllowance,
@@ -93,6 +93,14 @@ const InputRun = ({ car, carTotalAll }) => {
       return;
     }
     carTotalAll(totalCar);
+  };
+
+  const changeLabel = () => {
+    if (age1) {
+      return "Мінус Км Опер.надбавка";
+    } else {
+      return "Мінус Км Опер.надбавка, напружені умови";
+    }
   };
 
   useEffect(() => {
@@ -108,7 +116,7 @@ const InputRun = ({ car, carTotalAll }) => {
     storage.save("carTotalAll", { ...form });
   }, [form]);
 
-  const { age1, operNad, oldMileage, newMileage } = form;
+  const { age1, operNad, oldMileage, newMileage, minusMilagecustom } = form;
 
   const classes = useStyles();
 
@@ -167,9 +175,19 @@ const InputRun = ({ car, carTotalAll }) => {
         </FormControl>
       </Container>
 
+      <FormControl fullWidth variant="outlined" className={classes.form}>
+        <TextField
+          label={changeLabel()}
+          variant="outlined"
+          onChange={inputHandler}
+          name="minusMilagecustom"
+          value={minusMilagecustom}
+          type="number"
+        />
+      </FormControl>
+
       <FormControl fullWidth className={classes.form}>
         <TextField
-          id="1"
           label="Старий пробіг"
           variant="outlined"
           autoFocus
@@ -180,7 +198,6 @@ const InputRun = ({ car, carTotalAll }) => {
           required
         />
         <TextField
-          id="2"
           label="Новий пробіг"
           variant="outlined"
           onChange={inputHandler}

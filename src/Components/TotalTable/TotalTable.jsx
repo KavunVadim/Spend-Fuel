@@ -56,26 +56,14 @@ const TotalTable = ({ finishTotal }) => {
     oldMileage,
     operationInKiev,
     operationalAllowance,
+    minusMilagecustom,
   } = finishTotal;
 
   //----------------------------CAL----------------------------------
-  const wanceCal = () => {
-    if (passedKm <= 10) {
-      return passedKm * baseRate * operationalAllowance;
-    } else if (passedKm > 10 && baseRate === 0.06) {
-      return (passedKm - 2) * baseRate * operationalAllowance;
-    } else if (passedKm > 10 && passedKm < 15) {
-      return (passedKm - 8) * baseRate * operationalAllowance;
-    } else {
-      return (passedKm - 10) * baseRate * operationalAllowance;
-    }
-  };
 
   const ageCal = () => {
-    if (passedKm > 10 && age === 0.1 && baseRate === 0.06) {
-      return (passedKm - 2) * baseRate * age;
-    } else if (passedKm > 10 && age === 0.1) {
-      return (passedKm - 10) * baseRate * age;
+    if (age === 0.1) {
+      return (passedKm - minusMilagecustom) * baseRate * age;
     } else {
       return passedKm * baseRate * age;
     }
@@ -83,23 +71,19 @@ const TotalTable = ({ finishTotal }) => {
 
   //--------------------------KM----------------------------------------
   const kmAge = () => {
-    if (passedKm > 10 && age === 0.1 && baseRate === 0.06) {
-      return passedKm - 2;
-    } else if (passedKm > 10 && age === 0.1) {
-      return passedKm - 10;
+    if (age === 0.1) {
+      return passedKm - minusMilagecustom;
     } else {
       return passedKm;
     }
   };
 
+  const wanceCal = () => {
+    return (passedKm - minusMilagecustom) * baseRate * operationalAllowance;
+  };
+
   const kmWance = () => {
-    if (passedKm > 10 && baseRate === 0.06) {
-      return passedKm - 2;
-    } else if (passedKm > 10) {
-      return passedKm - 10;
-    } else {
-      return passedKm;
-    }
+    return passedKm - minusMilagecustom;
   };
   //--------------------------------------------------------------------------
   const passedKm = newMileage - oldMileage;
@@ -109,8 +93,6 @@ const TotalTable = ({ finishTotal }) => {
   const toAge = ageCal();
 
   const all = base + kiev + wance + toAge;
-
- 
 
   const createData = (name, km, lit) => {
     return { name, km, lit };
