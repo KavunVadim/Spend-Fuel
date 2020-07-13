@@ -16,7 +16,6 @@ import {
 } from "@material-ui/core";
 
 import storage from "../../helpers/storage";
-import { dark } from "@material-ui/core/styles/createPalette";
 
 const useStyles = makeStyles((theme) => ({
   form: {
