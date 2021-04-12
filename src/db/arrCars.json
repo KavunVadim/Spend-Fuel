@@ -1,8 +1,10 @@
-[{
+[
+  {
     "car": "skoda",
     "logo": "http://pngimg.com/uploads/skoda/skoda_PNG12353.png",
 
-    "model": [{
+    "model": [
+      {
         "id": "1",
         "name": "superb",
         "baseRate": 0.089,
@@ -34,41 +36,40 @@
   {
     "car": "volkswagen",
     "logo": "https://s3.amazonaws.com/static.revolutionparts.com/assets/images/volkswagen.png",
-    "model": [{
-      "id": "4",
-      "name": "caddy",
-      "baseRate": 0.076,
-      "operationInKiev": 0.15,
-      "operationalAllowance": 0.25,
-      "ageCar": [0.03, 0.05, 0.07, 0.09],
-      "img": "https://chip48.com/wp-content/uploads/2017/07/Caddy.png"
-    }]
+    "model": [
+      {
+        "id": "4",
+        "name": "caddy",
+        "baseRate": 0.076,
+        "operationInKiev": 0.15,
+        "operationalAllowance": 0.25,
+        "ageCar": [0.03, 0.05, 0.07, 0.09],
+        "img": "https://chip48.com/wp-content/uploads/2017/07/Caddy.png"
+      },
+      {
+        "id": "5",
+        "name": "caddy",
+        "baseRate": 0.076,
+        "operationInKiev": 0.15,
+        "operationalAllowance": 0.25,
+        "ageCar": [0.03, 0.05, 0.07, 0.09],
+        "img": "https://chip48.com/wp-content/uploads/2017/07/Caddy.png"
+      }
+    ]
   },
   {
     "car": "chevrolet",
     "logo": "http://pngimg.com/uploads/chevrolet/%D1%81hevrolet_PNG157.png",
-    "model": [{
-      "id": "5",
-      "name": "Lacetti",
-      "baseRate": 0.083,
-      "operationInKiev": 0.15,
-      "operationalAllowance": 0.25,
-      "ageCar": [0.03, 0.05, 0.07, 0.09],
-      "img": "https://lenzcars.com/wp-content/uploads/2019/07/kisspng-daewoo-lacetti-car-chevrolet-daewoo-lanos-5aed7080f27cd3.9417802015255102729932.png"
-    }]
-  },
-  {
-    "car": "kia",
-    "logo": "https://probrendi.ru/wp-content/uploads/2018/12/Kia-logo.png",
-    "model": [{
-      "id": "6",
-      "name": "cerato",
-      "baseRate": 0.0886,
-      "operationInKiev": 0.15,
-      "operationalAllowance": 0.25,
-      "ageCar": [0.03, 0.05, 0.07, 0.09],
-      "img": "https://catcar.com.ua/wp-content/uploads/2016/09/KIA-CERATO-MT.png"
-    }]
+    "model": [
+      {
+        "id": "5",
+        "name": "Lacetti",
+        "baseRate": 0.083,
+        "operationInKiev": 0.15,
+        "operationalAllowance": 0.25,
+        "ageCar": [0.03, 0.05, 0.07, 0.09],
+        "img": "https://lenzcars.com/wp-content/uploads/2019/07/kisspng-daewoo-lacetti-car-chevrolet-daewoo-lanos-5aed7080f27cd3.9417802015255102729932.png"
+      }
+    ]
   }
-
 ]

@@ -13,9 +13,11 @@ import {
 
 const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
   const [expanded, setExpanded] = useState(false);
+
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
   const useStyles = makeStyles((theme) => ({
     logo: {
       width: 75,
@@ -50,7 +52,7 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
             id="panel1bh-header"
             expandIcon={<ExpandMoreIcon />}
           >
-            <Grid
+           r
               className={classes.grid}
               container
               alignItems="center"
