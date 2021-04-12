@@ -52,7 +52,7 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
             id="panel1bh-header"
             expandIcon={<ExpandMoreIcon />}
           >
-           r
+            <Grid
               className={classes.grid}
               container
               alignItems="center"
@@ -63,7 +63,6 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
                 image={el.logo}
                 component="img"
               />
-
               <h2 className={classes.title}>{el.car.toUpperCase()}</h2>
             </Grid>
           </ExpansionPanelSummary>
