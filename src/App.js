@@ -4,6 +4,8 @@ import ChoceMarcCar from "./Components/ChoceMarcCar/ChoceMarcCar";
 import ArrCars from "./db/arrCars.json";
 import InputRun from "./Components/InputRun/InputRun";
 import TotalTable from "./Components/TotalTable/TotalTable";
+// import { Routes, Route} from "react-router-dom";
+
 
 function App() {
   const [car, setCar] = useState({});
@@ -27,6 +29,11 @@ function App() {
 
   return (
     <>
+     {/* <Routes>
+        <Route path="/" element={ <ChoceMarcCar arrCars={ArrCars} getCarMarc={getCarMarc} />} />
+        <Route path="/inputRun" element={<InputRun car={car} carTotalAll={carTotalAll} />} />
+        <Route path="/totalTable" element={<TotalTable finishTotal={finishTotal} />} />
+      </Routes> */}
       {choceMarcCarBloc && (
         <ChoceMarcCar arrCars={ArrCars} getCarMarc={getCarMarc} />
       )}
