@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core";
 
 import storage from "../../helpers/storage";
+import { imgCar } from "../../helpers/imgControler";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -83,9 +84,9 @@ const InputRun = ({ car, carTotalAll }) => {
       oldMileage,
       newMileage,
       minusMilagecustom,
-      baseRate: car.baseRate,
-      operationInKiev: car.operationInKiev,
-      operationalAllowance: car.operationalAllowance,
+      baseRate: car?.baseRate,
+      operationInKiev: car?.operationInKiev,
+      operationalAllowance: car?.operationalAllowance,
     };
     if (!totalCar.age) {
       notify();
@@ -123,9 +124,9 @@ const InputRun = ({ car, carTotalAll }) => {
     <form onSubmit={formSubmit}>
       <ToastContainer />
       <div className={classes.containerCarImg}>
-        <CardMedia className={classes.carImg} image={car.img} component="img" />
+        <CardMedia className={classes.carImg} image={imgCar(car?.name)} component="img" />
         <Typography className={classes.nameCar} component="h2">
-          {car.name.toUpperCase()}
+          {car?.name.toUpperCase()}
         </Typography>
       </div>
       <Container
@@ -147,7 +148,7 @@ const InputRun = ({ car, carTotalAll }) => {
             disabled={operNad ? true : false}
           >
             <MenuItem value="">Відмінити</MenuItem>
-            {car.ageCar.map((el) => (
+            {car?.ageCar.map((el) => (
               <MenuItem key={el} value={el}>
                 {`${el} %`}
               </MenuItem>

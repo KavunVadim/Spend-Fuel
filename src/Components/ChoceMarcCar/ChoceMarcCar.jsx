@@ -10,10 +10,11 @@ import {
   ExpansionPanelSummary,
   ExpansionPanelDetails,
 } from "@material-ui/core";
+import { imgCar, logoCar } from "../../helpers/imgControler";
 
 const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
   const [expanded, setExpanded] = useState(false);
-
+  
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -60,7 +61,7 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
             >
               <CardMedia
                 className={classes.logo}
-                image={el.logo}
+                image={logoCar(el.car)}
                 component="img"
               />
               <h2 className={classes.title}>{el.car.toUpperCase()}</h2>
@@ -80,7 +81,7 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
               >
                 <CardMedia
                   className={classes.car}
-                  image={marc.img}
+                  image={imgCar(marc.name)}
                   component="img"
                 />
                 <Typography className={classes.title} component="h2">

@@ -1,8 +1,6 @@
 [
   {
     "car": "skoda",
-    "logo": "http://pngimg.com/uploads/skoda/skoda_PNG12353.png",
-
     "model": [
       {
         "id": "1",
@@ -10,8 +8,7 @@
         "baseRate": 0.089,
         "operationInKiev": 0.15,
         "operationalAllowance": 0.25,
-        "ageCar": [0.03, 0.05, 0.07, 0.09],
-        "img": "https://eugene-skoda.ru/wp-content/uploads/2018/04/superb.png"
+        "ageCar": [0.03, 0.05, 0.07, 0.09]       
       },
       {
         "id": "2",
@@ -19,8 +16,7 @@
         "baseRate": 0.085,
         "operationInKiev": 0.15,
         "operationalAllowance": 0.25,
-        "ageCar": [0.03, 0.05, 0.07, 0.09],
-        "img": "https://tuning.com.ua/c/8600-medium_default/skoda-octavia1996-2010.jpg"
+        "ageCar": [0.03, 0.05, 0.07, 0.09]
       },
       {
         "id": "3",
@@ -28,14 +24,12 @@
         "baseRate": 0.06,
         "operationInKiev": 0.15,
         "operationalAllowance": 0.25,
-        "ageCar": [0.03, 0.05, 0.07, 0.09],
-        "img": "https://sibavto.ua/wp-content/uploads/2018/10/fabia1_1.png"
+        "ageCar": [0.03, 0.05, 0.07, 0.09]
       }
     ]
   },
   {
     "car": "volkswagen",
-    "logo": "https://s3.amazonaws.com/static.revolutionparts.com/assets/images/volkswagen.png",
     "model": [
       {
         "id": "4",
@@ -43,23 +37,20 @@
         "baseRate": 0.076,
         "operationInKiev": 0.15,
         "operationalAllowance": 0.25,
-        "ageCar": [0.03, 0.05, 0.07, 0.09],
-        "img": "https://chip48.com/wp-content/uploads/2017/07/Caddy.png"
+        "ageCar": [0.03, 0.05, 0.07, 0.09]
       }
     ]
   },
   {
     "car": "chevrolet",
-    "logo": "http://pngimg.com/uploads/chevrolet/%D1%81hevrolet_PNG157.png",
     "model": [
       {
         "id": "5",
-        "name": "Lacetti",
+        "name": "lacetti",
         "baseRate": 0.083,
         "operationInKiev": 0.15,
         "operationalAllowance": 0.25,
-        "ageCar": [0.03, 0.05, 0.07, 0.09],
-        "img": "https://lenzcars.com/wp-content/uploads/2019/07/kisspng-daewoo-lacetti-car-chevrolet-daewoo-lanos-5aed7080f27cd3.9417802015255102729932.png"
+        "ageCar": [0.03, 0.05, 0.07, 0.09]
       }
     ]
   }
