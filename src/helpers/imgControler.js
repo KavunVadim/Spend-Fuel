@@ -1,16 +1,16 @@
 //logoCar
-import skoda from '../assets/imgLogoCars/skoda.png'
-import chevrolet from '../assets/imgLogoCars/chevrolet.png'
-import volkswagen from '../assets/imgLogoCars/volkswagen.png'
+import skoda from '../assets/imgLogoCars/skoda.webp'
+import chevrolet from '../assets/imgLogoCars/chevrolet.webp'
+import volkswagen from '../assets/imgLogoCars/volkswagen.webp'
 
 //skoda
-import superb from '../assets/imgCars/skoda-superb.png'
-import octavia from '../assets/imgCars/skoda-octavia.png'
-import fabia from '../assets/imgCars/skoda-fabia.png'
+import superb from '../assets/imgCars/skoda-superb.webp'
+import octavia from '../assets/imgCars/skoda-octavia.webp'
+import fabia from '../assets/imgCars/skoda-fabia.webp'
 //chevrolet
-import lacetti from '../assets/imgCars/chevrolet-Lacetti.png'
+import lacetti from '../assets/imgCars/chevrolet-Lacetti.webp'
 //volkswagen
-import caddy from '../assets/imgCars/volkswagen-caddy.png'
+import caddy from '../assets/imgCars/volkswagen-caddy.webp'
 
 export const logoCar = (name) => {    
     if(name === 'skoda') return skoda
