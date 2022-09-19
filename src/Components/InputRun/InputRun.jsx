@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
 
 import {
   TextField,
@@ -70,6 +74,8 @@ const notify = () =>
 const InputRun = ({ car, carTotalAll }) => {
   const [form, setForm] = useState(formInitialState);
 
+  let navigate = useNavigate();
+
   const inputHandler = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -93,6 +99,7 @@ const InputRun = ({ car, carTotalAll }) => {
       return;
     }
     carTotalAll(totalCar);
+    navigate(`totalTable`);
   };
 
   const changeLabel = () => {
@@ -206,6 +213,7 @@ const InputRun = ({ car, carTotalAll }) => {
           type="number"
           required
         />
+   
         <Button
           type="submit"
           className={classes.text}
@@ -214,6 +222,7 @@ const InputRun = ({ car, carTotalAll }) => {
         >
           Далі
         </Button>
+       
       </FormControl>
     </form>
   );

@@ -11,6 +11,8 @@ import {
   ExpansionPanelDetails,
 } from "@material-ui/core";
 import { imgCar, logoCar } from "../../helpers/imgControler";
+import { Link } from "react-router-dom";
+
 
 const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
   const [expanded, setExpanded] = useState(false);
@@ -44,7 +46,7 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
         <ExpansionPanel
           expanded={expanded === `panel${index + 1}`}
           onChange={handleChange(`panel${index + 1}`)}
-          key={el.logo}
+          key={el.car}
         >
           <ExpansionPanelSummary
             children
@@ -69,6 +71,7 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
           </ExpansionPanelSummary>
 
           {el.model.map((marc) => (
+            <Link to='inputRun' key={marc.id}>
             <ExpansionPanelDetails
               onClick={() => getCarMarc(marc)}
               key={marc.id}
@@ -89,6 +92,7 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
                 </Typography>
               </Grid>
             </ExpansionPanelDetails>
+            </Link>
           ))}
         </ExpansionPanel>
       ))}
