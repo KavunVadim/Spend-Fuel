@@ -1,38 +1,55 @@
 import React, { useState, useEffect } from "react";
+import { Routes, Route} from "react-router-dom";
+
 import "./App.css";
 import ChoceMarcCar from "./Components/ChoceMarcCar/ChoceMarcCar";
 import ArrCars from "./db/arrCars.json";
 import InputRun from "./Components/InputRun/InputRun";
 import TotalTable from "./Components/TotalTable/TotalTable";
-import { Routes, Route} from "react-router-dom";
 import storage from "./helpers/storage";
 
 
 function App() {
-  const [car, setCar] = useState({});
-  const [finishTotal, setFinishTotal] = useState({});  
+  const [car, setCar] = useState({
+    ageCar: [],
+    baseRate: "",
+    id: "",
+    name: "",
+    operationInKiev: "",
+    operationalAllowance: ""
+  });
+  const [finishTotal, setFinishTotal] = useState({
+    "age": "",
+    "oldMileage": "",
+    "newMileage": "",
+    "minusMilagecustom": "",
+    "baseRate": "",
+    "operationInKiev": "",
+    "operationalAllowance": ""
+});    
 
   const getCarMarc = (marc) => {   
-    setCar(marc);    
+    if (marc !== car) setCar(marc);        
   };
 
   const carTotalAll = (totalCar) => {
-    setFinishTotal({ ...totalCar });
+    if(totalCar !== finishTotal) setFinishTotal({ ...totalCar });   
     
   };
 
   useEffect(() => {
     const car = storage.get("car");
-    if (!car) {
-      storage.save("car", []);
-      return;
-    }
+    const totalCar = storage.get("totalCar")
+    if (!car) return storage.save("car", []);  
+    if (!totalCar) return storage.save("totalCar", []);  
     setCar(car);
+    setFinishTotal(totalCar);    
   }, []);
 
   useEffect(() => {
     storage.save("car", { ...car });
-  }, [car]);
+    storage.save("totalCar", { ...finishTotal });
+  }, [car,finishTotal]);
 
   return (
     <>
