@@ -6,9 +6,9 @@ import Grid from "@material-ui/core/Grid";
 import {
   Typography,
   CardMedia,
-  ExpansionPanel,
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 } from "@material-ui/core";
 import { imgCar, logoCar } from "../../helpers/imgControler";
 import { Link } from "react-router-dom";
@@ -43,12 +43,12 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
   return (
     <>
       {arrCars.map((el, index) => (
-        <ExpansionPanel
+        <Accordion
           expanded={expanded === `panel${index + 1}`}
           onChange={handleChange(`panel${index + 1}`)}
           key={el.car}
         >
-          <ExpansionPanelSummary
+          <AccordionSummary
             children
             className={classes.PanelMy}
             aria-controls="panel1bh-content"
@@ -68,11 +68,11 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
               />
               <h2 className={classes.title}>{el.car.toUpperCase()}</h2>
             </Grid>
-          </ExpansionPanelSummary>
+          </AccordionSummary>
 
           {el.model.map((marc) => (
             <Link to='inputRun' key={marc.id}>
-            <ExpansionPanelDetails
+            <AccordionDetails
               onClick={() => getCarMarc(marc)}
               key={marc.id}
             >
@@ -91,10 +91,10 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
                   {marc.name.toUpperCase()}
                 </Typography>
               </Grid>
-            </ExpansionPanelDetails>
+            </AccordionDetails>
             </Link>
           ))}
-        </ExpansionPanel>
+        </Accordion>
       ))}
     </>
   );

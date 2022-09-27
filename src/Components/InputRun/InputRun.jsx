@@ -57,6 +57,9 @@ const formInitialState = {
   oldMileage: "",
   newMileage: "",
   minusMilagecustom: "",
+  baseRate: "",
+  operationInKiev: "",
+  operationalAllowance: "",
 };
 
 const notify = () =>
