@@ -65,6 +65,7 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
                 className={classes.logo}
                 image={logoCar(el.car)}
                 component="img"
+                loading="lazy"
               />
               <h2 className={classes.title}>{el.car.toUpperCase()}</h2>
             </Grid>
@@ -86,6 +87,7 @@ const ChoceMarcCar = ({ arrCars, getCarMarc }) => {
                   className={classes.car}
                   image={imgCar(marc.name)}
                   component="img"
+                  loading="lazy"
                 />
                 <Typography className={classes.title} component="h2">
                   {marc.name.toUpperCase()}

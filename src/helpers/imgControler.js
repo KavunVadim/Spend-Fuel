@@ -12,13 +12,13 @@ import lacetti from '../assets/imgCars/chevrolet-Lacetti.webp'
 //volkswagen
 import caddy from '../assets/imgCars/volkswagen-caddy.webp'
 
-export const logoCar = (name) => {    
+export const logoCar = (name) => {  
     if(name === 'skoda') return skoda
     if(name === 'chevrolet') return chevrolet
     if(name === 'volkswagen') return volkswagen
   }
 
-export  const imgCar = (name) => {
+export const imgCar = (name) => {
     if(name === 'superb') return superb
     if(name === 'octavia') return octavia
     if(name === 'fabia') return fabia
