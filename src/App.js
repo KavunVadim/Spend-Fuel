@@ -1,13 +1,13 @@
-import React, { useState, useEffect, lazy , Suspense} from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route} from "react-router-dom";
 
 import "./App.css";
+import ChoceMarcCar from "./Components/ChoceMarcCar/ChoceMarcCar";
 import ArrCars from "./db/arrCars.json";
+import InputRun from "./Components/InputRun/InputRun";
+import TotalTable from "./Components/TotalTable/TotalTable";
 import storage from "./helpers/storage";
 
-const LazyChoceMarcCar = lazy(()=> import("./Components/ChoceMarcCar/ChoceMarcCar"))
-const LazyInputRun = lazy(()=> import("./Components/InputRun/InputRun"))
-const LazyTotalTable = lazy(()=> import("./Components/TotalTable/TotalTable"))
 
 function App() {
   const [car, setCar] = useState({
@@ -54,9 +54,9 @@ function App() {
   return (
     <>
      <Routes>
-        <Route path="/" element={<Suspense fallback='...Loading'><LazyChoceMarcCar arrCars={ArrCars} getCarMarc={getCarMarc} /></Suspense>} />
-        <Route path="inputRun" element={<Suspense fallback='...Loading'><LazyInputRun car={car} carTotalAll={carTotalAll} /></Suspense>} />
-        <Route path="totalTable" element={<Suspense fallback='...Loading'><LazyTotalTable finishTotal={finishTotal} /></Suspense>} />
+        <Route path="/" element={ <ChoceMarcCar arrCars={ArrCars} getCarMarc={getCarMarc} />} />
+        <Route path="inputRun" element={<InputRun car={car} carTotalAll={carTotalAll} />} />
+        <Route path="inputRun/totalTable" element={<TotalTable finishTotal={finishTotal} />} />
       </Routes>     
     </>
   );

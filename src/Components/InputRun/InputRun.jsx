@@ -76,7 +76,7 @@ const notify = () =>
 const InputRun = ({ car, carTotalAll }) => {
   const [form, setForm] = useState(formInitialState);
 
-  const navigate = useNavigate();
+  let navigate = useNavigate();
 
   const inputHandler = (e) => {
     const name = e.target.name;
@@ -101,7 +101,7 @@ const InputRun = ({ car, carTotalAll }) => {
       return;
     }
     carTotalAll(totalCar);
-    navigate(`/totalTable`);
+    navigate(`totalTable`);
   };
 
   const changeLabel = () => {
