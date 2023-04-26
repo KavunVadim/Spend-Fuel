@@ -59,9 +59,7 @@ const TotalTable = ({ finishTotal }) => {
     minusMilagecustom,
   } = finishTotal;
 
-  //----------------------------CAL----------------------------------
-
-  const ageCal = () => {
+  const calculateAge = (passedKm) => {
     if (age === 0.1) {
       return (passedKm - minusMilagecustom) * baseRate * age;
     } else {
@@ -69,8 +67,7 @@ const TotalTable = ({ finishTotal }) => {
     }
   };
 
-  //--------------------------KM----------------------------------------
-  const kmAge = () => {
+  const calculateKmAge = (passedKm) => {
     if (age === 0.1) {
       return passedKm - minusMilagecustom;
     } else {
@@ -78,19 +75,19 @@ const TotalTable = ({ finishTotal }) => {
     }
   };
 
-  const wanceCal = () => {
+  const calculateWance = (passedKm) => {
     return (passedKm - minusMilagecustom) * baseRate * operationalAllowance;
   };
 
-  const kmWance = () => {
+  const calculateKmWance = (passedKm) => {
     return passedKm - minusMilagecustom;
   };
-  //--------------------------------------------------------------------------
+
   const passedKm = newMileage - oldMileage;
   const base = passedKm * baseRate;
   const kiev = passedKm * baseRate * operationInKiev;
-  const wance = wanceCal();
-  const toAge = ageCal();
+  const wance = calculateWance(passedKm);
+  const toAge = calculateAge(passedKm);
 
   const all = base + kiev + wance + toAge;
 
@@ -111,12 +108,12 @@ const TotalTable = ({ finishTotal }) => {
     ),
     createData(
       `Опер. Надбавка ${operationalAllowance}%`,
-      `${kmWance()}`,
+      `${calculateKmWance(passedKm)}`,
       `${wance.toFixed(2)}`
     ),
     createData(
       `${age === 0.1 ? "Напружені умови" : "Вік Ам"} ${age}%`,
-      `${kmAge()}`,
+      `${calculateKmAge(passedKm)}`,
       `${toAge.toFixed(2)}`
     ),
   ];

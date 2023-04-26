@@ -1,27 +1,29 @@
-//logoCar
-import skoda from '../assets/imgLogoCars/skoda.webp'
-import chevrolet from '../assets/imgLogoCars/chevrolet.webp'
-import volkswagen from '../assets/imgLogoCars/volkswagen.webp'
+import skodaLogo from '../assets/imgLogoCars/skoda.webp'
+import chevyLogo from '../assets/imgLogoCars/chevrolet.webp'
+import vwLogo from '../assets/imgLogoCars/volkswagen.webp'
 
-//skoda
-import superb from '../assets/imgCars/skoda-superb.webp'
-import octavia from '../assets/imgCars/skoda-octavia.webp'
-import fabia from '../assets/imgCars/skoda-fabia.webp'
-//chevrolet
-import lacetti from '../assets/imgCars/chevrolet-Lacetti.webp'
-//volkswagen
-import caddy from '../assets/imgCars/volkswagen-caddy.webp'
+import superbImg from '../assets/imgCars/skoda-superb.webp'
+import octaviaImg from '../assets/imgCars/skoda-octavia.webp'
+import fabiaImg from '../assets/imgCars/skoda-fabia.webp'
+import lacettiImg from '../assets/imgCars/chevrolet-Lacetti.webp'
+import caddyImg from '../assets/imgCars/volkswagen-caddy.webp'
 
 export const logoCar = (name) => {  
-    if(name === 'skoda') return skoda
-    if(name === 'chevrolet') return chevrolet
-    if(name === 'volkswagen') return volkswagen
+  switch(name) {
+    case 'skoda': return skodaLogo;
+    case 'chevrolet': return chevyLogo;
+    case 'volkswagen': return vwLogo;
+    default: return null;
   }
+}
 
 export const imgCar = (name) => {
-    if(name === 'superb') return superb
-    if(name === 'octavia') return octavia
-    if(name === 'fabia') return fabia
-    if(name === 'caddy') return caddy
-    if(name === 'lacetti') return lacetti    
+  switch(name) {
+    case 'superb': return superbImg;
+    case 'octavia': return octaviaImg;
+    case 'fabia': return fabiaImg;
+    case 'lacetti': return lacettiImg;
+    case 'caddy': return caddyImg;
+    default: return null;
   }
+}

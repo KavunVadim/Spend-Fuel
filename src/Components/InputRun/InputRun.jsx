@@ -79,10 +79,10 @@ const InputRun = ({ car, carTotalAll }) => {
   const navigate = useNavigate();
 
   const inputHandler = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setForm({ ...form, [name]: value });
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
+
 
   const formSubmit = (e) => {
     e.preventDefault();

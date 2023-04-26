@@ -40,8 +40,8 @@ function App() {
   useEffect(() => {
     const car = storage.get("car");
     const totalCar = storage.get("totalCar")
-    if (!car) return storage.save("car", []);  
-    if (!totalCar) return storage.save("totalCar", []);  
+    if (!car) return storage.save("car", {});  
+    if (!totalCar) return storage.save("totalCar", {});  
     setCar(car);
     setFinishTotal(totalCar);    
   }, []);
