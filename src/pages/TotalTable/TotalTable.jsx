@@ -1,12 +1,14 @@
-import React from "react";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+import { useSelector } from 'react-redux';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from '@material-ui/core';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -20,7 +22,7 @@ const StyledTableCell = withStyles((theme) => ({
 
 const StyledTableRow = withStyles((theme) => ({
   root: {
-    "&:nth-of-type(odd)": {
+    '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.background.default,
     },
   },
@@ -31,18 +33,18 @@ const useStyles = makeStyles({
     minWidth: 375,
   },
   km: {
-    color: "black",
+    color: 'black',
   },
   lit: {
-    color: "#191970",
+    color: '#191970',
   },
   totalNumber: {
-    color: "#191970",
+    color: '#191970',
     fontSize: 40,
   },
   totalNumberContainer: {
-    display: "flex",
-    justifyContent: "center",
+    display: 'flex',
+    justifyContent: 'center',
     marginTop: 20,
   },
 });
@@ -57,7 +59,7 @@ const TotalTable = ({ finishTotal }) => {
     operationInKiev,
     operationalAllowance,
     minusMilagecustom,
-  } = finishTotal;
+  } = useSelector((state) => state.totalInfo.total);
 
   const calculateAge = (passedKm) => {
     if (age === 0.1) {
@@ -112,7 +114,7 @@ const TotalTable = ({ finishTotal }) => {
       `${wance.toFixed(2)}`
     ),
     createData(
-      `${age === 0.1 ? "Напружені умови" : "Вік Ам"} ${age}%`,
+      `${age === 0.1 ? 'Напружені умови' : 'Вік Ам'} ${age}%`,
       `${calculateKmAge(passedKm)}`,
       `${toAge.toFixed(2)}`
     ),

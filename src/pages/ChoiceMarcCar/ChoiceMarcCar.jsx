@@ -1,18 +1,18 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Grid from '@material-ui/core/Grid';
 import {
   Typography,
   CardMedia,
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Grid,
 } from '@material-ui/core';
-import { imgCar, logoCar } from '../../helpers/imgController';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
+import { imgCar, logoCar } from '../../helpers/imgController';
 import arrCars from '../../db/arrCars.json';
 import {
   changeCarMarc,

@@ -1,7 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import carReducer from '../store/sliceChoiceMarcCar/sliceChoiceMarcCar';
-// import totalReducer from '../store/sliceInputRun';
+import carReducer from './sliceChoiceMarcCar/sliceChoiceMarcCar';
+import totalReducer from './sliceInputRun/sliceInputRun';
+import navigationReducer from './sliceNavigation/navigationSlice';
 
 export const store = configureStore({
-  reducer: { carInform: carReducer },
+  reducer: {
+    carInfo: carReducer,
+    totalInfo: totalReducer,
+    navigation: navigationReducer,
+  },
 });

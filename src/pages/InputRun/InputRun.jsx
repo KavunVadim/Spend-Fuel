@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+
+import { changeTotalInfo } from '../../store/sliceInputRun/sliceInputRun';
 
 import {
   TextField,
@@ -18,7 +20,7 @@ import {
 
 import storage from '../../helpers/storage';
 import { imgCar } from '../../helpers/imgController';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -50,33 +52,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const formInitialState = {
-  age1: '',
-  operNad: '',
-  oldMileage: '',
-  newMileage: '',
-  minusMilagecustom: '',
-  baseRate: '',
-  operationInKiev: '',
-  operationalAllowance: '',
-};
-
-const notify = () =>
-  toast.error(`🚗 Оберіть (Вік чи Напружені умови) !`, {
-    position: 'top-center',
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
+const InputRun = () => {
+  const [form, setForm] = useState({
+    age1: '',
+    operNad: '',
+    oldMileage: '',
+    newMileage: '',
+    minusMilagecustom: '',
+    baseRate: '',
+    operationInKiev: '',
+    operationalAllowance: '',
   });
+  const notify = () =>
+    toast.error(`🚗 Оберіть (Вік чи Напружені умови) !`, {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
-const InputRun = ({ carTotalAll }) => {
-  const [form, setForm] = useState(formInitialState);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { car, baseInfo } = useSelector((state) => state.carInform);
+  const { car, baseInfo } = useSelector((state) => state.carInfo);
   const { baseRate } = car;
   const { operationInKiev, operationalAllowance, ageCar } = baseInfo;
 
@@ -101,7 +102,8 @@ const InputRun = ({ carTotalAll }) => {
       notify();
       return;
     }
-    carTotalAll(totalCar);
+
+    dispatch(changeTotalInfo(totalCar));
     navigate(`/totalTable`);
   };
 
@@ -111,10 +113,10 @@ const InputRun = ({ carTotalAll }) => {
       : 'Мінус Км Опер.надбавка, напружені умови';
   };
 
-  useEffect(() => {
-    const arrContacts = storage.get('carTotalAll');
-    if (!arrContacts) return storage.save('carTotalAll', []);
-    setForm(arrContacts);
+  useEffect(() => {   
+    const total = storage.get('carTotalAll');
+    if (!total) return storage.save('carTotalAll', []);
+    setForm(total);
   }, []);
 
   useEffect(() => {
@@ -199,7 +201,6 @@ const InputRun = ({ carTotalAll }) => {
         <TextField
           label="Старий пробіг"
           variant="outlined"
-          autoFocus
           onChange={inputHandler}
           name="oldMileage"
           value={oldMileage}
