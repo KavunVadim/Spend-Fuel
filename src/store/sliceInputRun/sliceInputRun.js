@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  totalInfo: {
-    age1: '',
+  total: {
+    age: '',
     operNad: '',
     oldMileage: '',
     newMileage: '',
@@ -13,19 +13,16 @@ const initialState = {
   },
 };
 
-export const inputSlice = createSlice({
-  name: 'inputRun',
+export const totalInfoSlice = createSlice({
+  name: 'total',
   initialState,
   reducers: {
-    changeCarMarc: (state, action) => {
-      state.car = action.payload;
-    },
-    changeBaseInfo: (state, action) => {
-      state.baseInfo = action.payload;
+    changeTotalInfo: (state, action) => {
+      state.total = action.payload;
     },
   },
 });
 
-export const { changeCarMarc, changeBaseInfo } = inputSlice.actions;
+export const { changeTotalInfo } = totalInfoSlice.actions;
 
-export default inputSlice.reducer;
+export default totalInfoSlice.reducer;

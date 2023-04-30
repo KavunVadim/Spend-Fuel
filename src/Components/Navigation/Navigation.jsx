@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-
+import { useNavigate, useLocation } from 'react-router-dom';
+import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import {
   DirectionsCarOutlined,
   AddRoadOutlined,
   LocalGasStationOutlined,
 } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+
+import { useEffect } from 'react';
 
 const Navigation = () => {
   const [value, setValue] = useState('car');
-
   const navigate = useNavigate();
+  let { pathname } = useLocation();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -21,6 +21,10 @@ const Navigation = () => {
   const handleNavigate = (path) => {
     navigate(path);
   };
+
+  useEffect(() => {
+    setValue(pathname);
+  }, [pathname]);
 
   return (
     <BottomNavigation
@@ -38,19 +42,19 @@ const Navigation = () => {
       <BottomNavigationAction
         onClick={() => handleNavigate('/')}
         label="Машини"
-        value="car"
+        value="/"
         icon={<DirectionsCarOutlined />}
       />
       <BottomNavigationAction
         onClick={() => handleNavigate('/inputRun')}
         label="Дані"
-        value="inputRun"
+        value="/inputRun"
         icon={<AddRoadOutlined />}
       />
       <BottomNavigationAction
         onClick={() => handleNavigate('/totalTable')}
         label="Таблиця"
-        value="totalTable"
+        value="/totalTable"
         icon={<LocalGasStationOutlined />}
       />
     </BottomNavigation>
