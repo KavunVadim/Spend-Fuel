@@ -3,9 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 
 import storage from './helpers/storage';
 import Navigation from './Components/Navigation/Navigation';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
-import { changeCarMarc } from './store/sliceChoiceMarcCar/sliceChoiceMarcCar';
+// import { changeCarMarc } from './store/sliceChoiceMarcCar/sliceChoiceMarcCar';
 
 const LazyChoiceMarcCar = lazy(() =>
   import('./pages/ChoiceMarcCar/ChoiceMarcCar')
@@ -14,7 +14,7 @@ const LazyInputRun = lazy(() => import('./pages/InputRun/InputRun'));
 const LazyTotalTable = lazy(() => import('./pages/TotalTable/TotalTable'));
 
 function App() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [finishTotal, setFinishTotal] = useState({
     age: '',
     oldMileage: '',
@@ -35,7 +35,7 @@ function App() {
     if (!car) return storage.save('car', {});
     if (!totalCar) return storage.save('totalCar', {});
     // setCar(car);
-    dispatch(changeCarMarc(car));
+    // dispatch(changeCarMarc(car));
     setFinishTotal(totalCar);
   }, []);
 
