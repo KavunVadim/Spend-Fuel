@@ -1,57 +1,50 @@
-[
-  {
-    "car": "skoda",
-    "model": [
-      {
-        "id": "1",
-        "name": "superb",
-        "baseRate": 0.089,
-        "operationInKiev": 0.15,
-        "operationalAllowance": 0.25,
-        "ageCar": [0.03, 0.05, 0.07, 0.09]       
-      },
-      {
-        "id": "2",
-        "name": "octavia",
-        "baseRate": 0.085,
-        "operationInKiev": 0.15,
-        "operationalAllowance": 0.25,
-        "ageCar": [0.03, 0.05, 0.07, 0.09]
-      },
-      {
-        "id": "3",
-        "name": "fabia",
-        "baseRate": 0.06,
-        "operationInKiev": 0.15,
-        "operationalAllowance": 0.25,
-        "ageCar": [0.03, 0.05, 0.07, 0.09]
-      }
-    ]
+{
+  "baseInfo": {
+    "operationInKiev": 0.15,
+    "operationalAllowance": 0.25,
+    "ageCar": [0.03, 0.05, 0.07, 0.09]
   },
-  {
-    "car": "volkswagen",
-    "model": [
-      {
-        "id": "4",
-        "name": "caddy",
-        "baseRate": 0.076,
-        "operationInKiev": 0.15,
-        "operationalAllowance": 0.25,
-        "ageCar": [0.03, 0.05, 0.07, 0.09]
-      }
-    ]
-  },
-  {
-    "car": "chevrolet",
-    "model": [
-      {
-        "id": "5",
-        "name": "lacetti",
-        "baseRate": 0.083,
-        "operationInKiev": 0.15,
-        "operationalAllowance": 0.25,
-        "ageCar": [0.03, 0.05, 0.07, 0.09]
-      }
-    ]
-  }
-]
+
+  "cars": [
+    {
+      "car": "skoda",
+      "model": [
+        {
+          "id": "1",
+          "name": "superb",
+          "baseRate": 0.089
+        },
+        {
+          "id": "2",
+          "name": "octavia",
+          "baseRate": 0.085
+        },
+        {
+          "id": "3",
+          "name": "fabia",
+          "baseRate": 0.06
+        }
+      ]
+    },
+    {
+      "car": "volkswagen",
+      "model": [
+        {
+          "id": "4",
+          "name": "caddy",
+          "baseRate": 0.076
+        }
+      ]
+    },
+    {
+      "car": "chevrolet",
+      "model": [
+        {
+          "id": "5",
+          "name": "lacetti",
+          "baseRate": 0.083
+        }
+      ]
+    }
+  ]
+}
