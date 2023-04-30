@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
-
-
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 import {
   TextField,
@@ -16,14 +14,15 @@ import {
   CardMedia,
   Typography,
   Container,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
-import storage from "../../helpers/storage";
-import { imgCar } from "../../helpers/imgControler";
+import storage from '../../helpers/storage';
+import { imgCar } from '../../helpers/imgController';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   form: {
-    "& > *": {
+    '& > *': {
       margin: theme.spacing(1),
     },
   },
@@ -34,16 +33,16 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   containerSelect: {
-    display: "flex",
+    display: 'flex',
   },
   carImg: {
     width: 150,
     paddingRight: 10,
   },
   containerCarImg: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   nameCar: {
     fontWeight: 600,
@@ -52,19 +51,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const formInitialState = {
-  age1: "",
-  operNad: "",
-  oldMileage: "",
-  newMileage: "",
-  minusMilagecustom: "",
-  baseRate: "",
-  operationInKiev: "",
-  operationalAllowance: "",
+  age1: '',
+  operNad: '',
+  oldMileage: '',
+  newMileage: '',
+  minusMilagecustom: '',
+  baseRate: '',
+  operationInKiev: '',
+  operationalAllowance: '',
 };
 
 const notify = () =>
   toast.error(`🚗 Оберіть (Вік чи Напружені умови) !`, {
-    position: "top-center",
+    position: 'top-center',
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -73,16 +72,18 @@ const notify = () =>
     progress: undefined,
   });
 
-const InputRun = ({ car, carTotalAll }) => {
+const InputRun = ({ carTotalAll }) => {
   const [form, setForm] = useState(formInitialState);
-
   const navigate = useNavigate();
+
+  const { car, baseInfo } = useSelector((state) => state.carInform);
+  const { baseRate } = car;
+  const { operationInKiev, operationalAllowance, ageCar } = baseInfo;
 
   const inputHandler = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
-
 
   const formSubmit = (e) => {
     e.preventDefault();
@@ -92,9 +93,9 @@ const InputRun = ({ car, carTotalAll }) => {
       oldMileage,
       newMileage,
       minusMilagecustom,
-      baseRate: car?.baseRate,
-      operationInKiev: car?.operationInKiev,
-      operationalAllowance: car?.operationalAllowance,
+      baseRate,
+      operationInKiev,
+      operationalAllowance,
     };
     if (!totalCar.age) {
       notify();
@@ -105,24 +106,19 @@ const InputRun = ({ car, carTotalAll }) => {
   };
 
   const changeLabel = () => {
-    if (age1) {
-      return "Мінус Км Опер.надбавка";
-    } else {
-      return "Мінус Км Опер.надбавка, напружені умови";
-    }
+    return age1
+      ? 'Мінус Км Опер.надбавка'
+      : 'Мінус Км Опер.надбавка, напружені умови';
   };
 
   useEffect(() => {
-    const arrContacts = storage.get("carTotalAll");
-    if (!arrContacts) {
-      storage.save("carTotalAll", []);
-      return;
-    }
+    const arrContacts = storage.get('carTotalAll');
+    if (!arrContacts) return storage.save('carTotalAll', []);
     setForm(arrContacts);
   }, []);
 
   useEffect(() => {
-    storage.save("carTotalAll", { ...form });
+    storage.save('carTotalAll', { ...form });
   }, [form]);
 
   const { age1, operNad, oldMileage, newMileage, minusMilagecustom } = form;
@@ -133,7 +129,11 @@ const InputRun = ({ car, carTotalAll }) => {
     <form onSubmit={formSubmit}>
       <ToastContainer />
       <div className={classes.containerCarImg}>
-        <CardMedia className={classes.carImg} image={imgCar(car?.name)} component="img" />
+        <CardMedia
+          className={classes.carImg}
+          image={imgCar(car?.name)}
+          component="img"
+        />
         <Typography className={classes.nameCar} component="h2">
           {car?.name.toUpperCase()}
         </Typography>
@@ -157,7 +157,7 @@ const InputRun = ({ car, carTotalAll }) => {
             disabled={operNad ? true : false}
           >
             <MenuItem value="">Відмінити</MenuItem>
-            {car?.ageCar.map((el) => (
+            {ageCar.map((el) => (
               <MenuItem key={el} value={el}>
                 {`${el} %`}
               </MenuItem>
@@ -215,7 +215,7 @@ const InputRun = ({ car, carTotalAll }) => {
           type="number"
           required
         />
-   
+
         <Button
           type="submit"
           className={classes.text}
@@ -224,7 +224,6 @@ const InputRun = ({ car, carTotalAll }) => {
         >
           Далі
         </Button>
-       
       </FormControl>
     </form>
   );
