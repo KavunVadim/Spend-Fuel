@@ -19,34 +19,40 @@ import {
   changeBaseInfo,
 } from '../../store/sliceChoiceMarcCar/sliceChoiceMarcCar';
 
+const useStyles = makeStyles((theme) => ({
+  logo: {
+    width: 75,
+    paddingRight: '2em',
+  },
+  title: {
+    fontWeight: 800,
+    fontSize: 18,
+  },
+  PanelMy: {
+    height: 100,
+  },
+  car: {
+    width: 150,
+    paddingRight: '1em',
+  },
+  link: {
+    textDecoration: 'none',
+    color: 'black',
+    '&:hover': {
+      color: 'blue',
+    },
+  },
+}));
+
 const ChoiceMarcCar = () => {
   const [expanded, setExpanded] = useState(false);
-
   const dispatch = useDispatch();
   dispatch(changeBaseInfo(arrCars.baseInfo));
+  const classes = useStyles();
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-
-  const useStyles = makeStyles((theme) => ({
-    logo: {
-      width: 75,
-      paddingRight: '2em',
-    },
-    title: {
-      fontWeight: 800,
-      fontSize: 18,
-    },
-    PanelMy: {
-      height: 100,
-    },
-    car: {
-      width: 150,
-      paddingRight: '1em',
-    },
-  }));
-  const classes = useStyles();
 
   return (
     <>
@@ -80,7 +86,7 @@ const ChoiceMarcCar = () => {
           </AccordionSummary>
 
           {el.model.map((marc) => (
-            <Link to="inputRun" key={marc.id}>
+            <Link className={classes.link} to="inputRun" key={marc.id}>
               <AccordionDetails
                 onClick={() => dispatch(changeCarMarc(marc))}
                 key={marc.id}

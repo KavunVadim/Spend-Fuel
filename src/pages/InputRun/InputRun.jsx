@@ -45,10 +45,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: '1em',
   },
   nameCar: {
     fontWeight: 600,
-    fontSize: 30,
+    fontSize: 50,
   },
 }));
 
@@ -113,7 +114,7 @@ const InputRun = () => {
       : 'Мінус Км Опер.надбавка, напружені умови';
   };
 
-  useEffect(() => {   
+  useEffect(() => {
     const total = storage.get('carTotalAll');
     if (!total) return storage.save('carTotalAll', []);
     setForm(total);
