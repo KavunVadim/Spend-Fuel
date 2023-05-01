@@ -224,7 +224,7 @@ const InputRun = () => {
           variant="contained"
           color="primary"
         >
-          Далі
+          Розрахувати
         </Button>
       </FormControl>
     </form>
