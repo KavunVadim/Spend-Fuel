@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import {
@@ -7,16 +7,10 @@ import {
   LocalGasStationOutlined,
 } from '@mui/icons-material';
 
-import { useEffect } from 'react';
-
 const Navigation = () => {
-  const [value, setValue] = useState('car');
+  const [value, setValue] = useState('');
   const navigate = useNavigate();
   let { pathname } = useLocation();
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   const handleNavigate = (path) => {
     navigate(path);
@@ -37,7 +31,6 @@ const Navigation = () => {
         bottom: '0',
       }}
       value={value}
-      onChange={handleChange}
     >
       <BottomNavigationAction
         onClick={() => handleNavigate('/')}
