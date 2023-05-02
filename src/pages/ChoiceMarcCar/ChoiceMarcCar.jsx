@@ -12,12 +12,9 @@ import {
   Grid,
 } from '@material-ui/core';
 
-import { imgCar, logoCar } from '../../helpers/imgController';
+import { getCarImg, getCarLogo } from '../../helpers/imgController';
 import arrCars from '../../db/arrCars.json';
-import {
-  changeCarMarc,
-  changeBaseInfo,
-} from '../../store/sliceChoiceMarcCar/sliceChoiceMarcCar';
+import { changeCarMarc, changeBaseInfo } from '../../store/sliceChoiceMarcCar/sliceChoiceMarcCar';
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -46,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ChoiceMarcCar = () => {
   const [expanded, setExpanded] = useState(false);
+
   const dispatch = useDispatch();
   dispatch(changeBaseInfo(arrCars.baseInfo));
   const classes = useStyles();
@@ -69,40 +67,17 @@ const ChoiceMarcCar = () => {
             id="panel1bh-header"
             expandIcon={<ExpandMoreIcon />}
           >
-            <Grid
-              className={classes.grid}
-              container
-              alignItems="center"
-              direction="row"
-            >
-              <CardMedia
-                className={classes.logo}
-                image={logoCar(el.car)}
-                component="img"
-                loading="lazy"
-              />
+            <Grid className={classes.grid} container alignItems="center" direction="row">
+              <CardMedia className={classes.logo} image={getCarLogo(el.car)} component="img" />
               <h2 className={classes.title}>{el.car.toUpperCase()}</h2>
             </Grid>
           </AccordionSummary>
 
           {el.model.map((marc) => (
             <Link className={classes.link} to="inputRun" key={marc.id}>
-              <AccordionDetails
-                onClick={() => dispatch(changeCarMarc(marc))}
-                key={marc.id}
-              >
-                <Grid
-                  className={classes.grid}
-                  container
-                  alignItems="center"
-                  direction="row"
-                >
-                  <CardMedia
-                    className={classes.car}
-                    image={imgCar(marc.name)}
-                    component="img"
-                    loading="lazy"
-                  />
+              <AccordionDetails onClick={() => dispatch(changeCarMarc(marc))} key={marc.id}>
+                <Grid className={classes.grid} container alignItems="center" direction="row">
+                  <CardMedia className={classes.car} image={getCarImg(marc.name)} component="img" />
                   <Typography className={classes.title} component="h2">
                     {marc.name.toUpperCase()}
                   </Typography>

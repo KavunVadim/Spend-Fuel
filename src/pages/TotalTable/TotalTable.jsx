@@ -1,4 +1,4 @@
-      import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import {
   Table,
@@ -98,25 +98,17 @@ const TotalTable = ({ finishTotal }) => {
   };
 
   const rows = [
-    createData(
-      `Базова норма ${baseRate}%`,
-      `${passedKm}`,
-      `${base.toFixed(2)}`
-    ),
-    createData(
-      `Екс.по м.Києву ${operationInKiev}%`,
-      `${passedKm}`,
-      `${kiev.toFixed(2)}`
-    ),
+    createData(`Базова норма ${baseRate}%`, `${passedKm}`, `${base.toFixed(2)}`),
+    createData(`Екс.по м.Києву ${operationInKiev}%`, `${passedKm}`, `${kiev.toFixed(2)}`),
     createData(
       `Опер. Надбавка ${operationalAllowance}%`,
       `${calculateKmWance(passedKm)}`,
-      `${wance.toFixed(2)}`
+      `${wance.toFixed(2)}`,
     ),
     createData(
       `${age === 0.1 ? 'Напружені умови' : 'Вік Ам'} ${age}%`,
       `${calculateKmAge(passedKm)}`,
-      `${toAge.toFixed(2)}`
+      `${toAge.toFixed(2)}`,
     ),
   ];
 

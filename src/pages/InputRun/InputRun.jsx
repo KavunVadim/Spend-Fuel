@@ -19,7 +19,7 @@ import {
 } from '@material-ui/core';
 
 import storage from '../../helpers/storage';
-import { imgCar } from '../../helpers/imgController';
+import { getCarImg } from '../../helpers/imgController';
 import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
@@ -109,9 +109,7 @@ const InputRun = () => {
   };
 
   const changeLabel = () => {
-    return age1
-      ? 'Мінус Км Опер.надбавка'
-      : 'Мінус Км Опер.надбавка, напружені умови';
+    return age1 ? 'Мінус Км Опер.надбавка' : 'Мінус Км Опер.надбавка, напружені умови';
   };
 
   useEffect(() => {
@@ -132,24 +130,14 @@ const InputRun = () => {
     <form onSubmit={formSubmit}>
       <ToastContainer />
       <div className={classes.containerCarImg}>
-        <CardMedia
-          className={classes.carImg}
-          image={imgCar(car?.name)}
-          component="img"
-        />
+        <CardMedia className={classes.carImg} image={getCarImg(car?.name)} component="img" />
         <Typography className={classes.nameCar} component="h2">
           {car?.name.toUpperCase()}
         </Typography>
       </div>
-      <Container
-        className={classes.containerSelect}
-        component="div"
-        style={{ padding: 0 }}
-      >
+      <Container className={classes.containerSelect} component="div" style={{ padding: 0 }}>
         <FormControl fullWidth variant="outlined" className={classes.form}>
-          <InputLabel id="demo-simple-select-outlined-label">
-            Вік А\М
-          </InputLabel>
+          <InputLabel id="demo-simple-select-outlined-label">Вік А\М</InputLabel>
           <Select
             label="Вік А\М"
             id="1"
@@ -218,12 +206,7 @@ const InputRun = () => {
           required
         />
 
-        <Button
-          type="submit"
-          className={classes.text}
-          variant="contained"
-          color="primary"
-        >
+        <Button type="submit" className={classes.text} variant="contained" color="primary">
           Розрахувати
         </Button>
       </FormControl>

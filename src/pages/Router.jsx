@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Loader from '../Components/Loader/Loader';
 
 const LazyChoiceMarcCar = lazy(() => import('./ChoiceMarcCar/ChoiceMarcCar'));
 const LazyInputRun = lazy(() => import('./InputRun/InputRun'));
@@ -11,7 +12,7 @@ function Router() {
       <Route
         path="/"
         element={
-          <Suspense fallback="...Loading">
+          <Suspense fallback={<Loader />}>
             <LazyChoiceMarcCar />
           </Suspense>
         }
@@ -19,7 +20,7 @@ function Router() {
       <Route
         path="inputRun"
         element={
-          <Suspense fallback="...Loading">
+          <Suspense fallback={<Loader />}>
             <LazyInputRun />
           </Suspense>
         }
@@ -27,7 +28,7 @@ function Router() {
       <Route
         path="totalTable"
         element={
-          <Suspense fallback="...Loading">
+          <Suspense fallback={<Loader />}>
             <LazyTotalTable />
           </Suspense>
         }
