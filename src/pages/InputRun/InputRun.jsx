@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
-import { changeTotalInfo } from '../../store/sliceInputRun/sliceInputRun';
+import { changeTotalInfo } from '../../store/slices/sliceInputRun';
 
 import {
   TextField,
@@ -64,6 +64,7 @@ const InputRun = () => {
     operationInKiev: '',
     operationalAllowance: '',
   });
+
   const notify = () =>
     toast.error(`🚗 Оберіть (Вік чи Напружені умови) !`, {
       position: 'top-center',
@@ -78,7 +79,7 @@ const InputRun = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { car, baseInfo } = useSelector((state) => state.carInfo);
+  const { car, baseInfo } = useSelector((state) => state.car);
   const { baseRate } = car;
   const { operationInKiev, operationalAllowance, ageCar } = baseInfo;
 
@@ -113,14 +114,10 @@ const InputRun = () => {
   };
 
   useEffect(() => {
-    const total = storage.get('carTotalAll');
-    if (!total) return storage.save('carTotalAll', []);
+    const total = storage.get('total');
+    if (!total) return;
     setForm(total);
   }, []);
-
-  useEffect(() => {
-    storage.save('carTotalAll', { ...form });
-  }, [form]);
 
   const { age1, operNad, oldMileage, newMileage, minusMilagecustom } = form;
 

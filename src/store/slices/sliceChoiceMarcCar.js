@@ -1,8 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import storage from '../../helpers/storage';
 
 const initialState = {
-  car: { id: '', name: '', baseRate: '' },
-  baseInfo: { ageCar: [], operationInKiev: '', operationalAllowance: '' },
+  car: storage.get('car') || { id: '', name: '', baseRate: '' },
+  baseInfo: storage.get('baseInfo') || {
+    ageCar: [],
+    operationInKiev: '',
+    operationalAllowance: '',
+  },
 };
 
 export const carSlice = createSlice({
@@ -11,9 +16,11 @@ export const carSlice = createSlice({
   reducers: {
     changeCarMarc: (state, action) => {
       state.car = action.payload;
+      storage.save('car', state.car);
     },
     changeBaseInfo: (state, action) => {
       state.baseInfo = action.payload;
+      storage.save('baseInfo', state.baseInfo);
     },
   },
 });
