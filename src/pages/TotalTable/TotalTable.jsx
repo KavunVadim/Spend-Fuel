@@ -49,7 +49,7 @@ const useStyles = makeStyles({
   },
 });
 
-const TotalTable = ({ finishTotal }) => {
+const TotalTable = () => {  
   const classes = useStyles();
   const {
     age,
@@ -59,7 +59,7 @@ const TotalTable = ({ finishTotal }) => {
     operationInKiev,
     operationalAllowance,
     minusMilagecustom,
-  } = useSelector((state) => state.totalInfo.total);
+  } = useSelector((state) => state.total.total);
 
   const calculateAge = (passedKm) => {
     if (age === 0.1) {
@@ -70,6 +70,7 @@ const TotalTable = ({ finishTotal }) => {
   };
 
   const calculateKmAge = (passedKm) => {
+    
     if (age === 0.1) {
       return passedKm - minusMilagecustom;
     } else {

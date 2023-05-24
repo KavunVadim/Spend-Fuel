@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import storage from '../../helpers/storage';
 
 const initialState = {
   total: {
@@ -18,7 +19,8 @@ export const totalInfoSlice = createSlice({
   initialState,
   reducers: {
     changeTotalInfo: (state, action) => {
-      state.total = action.payload;
+      state.total = { ...action.payload };
+      storage.save('total', state.total);
     },
   },
 });

@@ -13,13 +13,14 @@ import {
 } from '@material-ui/core';
 
 import { getCarImg, getCarLogo } from '../../helpers/imgController';
+import { changeCarMarc, changeBaseInfo } from '../../store/slices/sliceChoiceMarcCar';
+import storage from '../../helpers/storage';
 import arrCars from '../../db/arrCars.json';
-import { changeCarMarc, changeBaseInfo } from '../../store/sliceChoiceMarcCar/sliceChoiceMarcCar';
 
 const useStyles = makeStyles((theme) => ({
   logo: {
     width: 75,
-    paddingRight: '2em',
+    paddingRight: '1em',
   },
   title: {
     fontWeight: 800,
@@ -43,13 +44,16 @@ const useStyles = makeStyles((theme) => ({
 
 const ChoiceMarcCar = () => {
   const [expanded, setExpanded] = useState(false);
-
   const dispatch = useDispatch();
-  dispatch(changeBaseInfo(arrCars.baseInfo));
   const classes = useStyles();
+  dispatch(changeBaseInfo(arrCars.baseInfo));
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
+  };
+
+  const handleChangeCars = (marc) => {
+    dispatch(changeCarMarc(marc));
   };
 
   return (
@@ -75,7 +79,7 @@ const ChoiceMarcCar = () => {
 
           {el.model.map((marc) => (
             <Link className={classes.link} to="inputRun" key={marc.id}>
-              <AccordionDetails onClick={() => dispatch(changeCarMarc(marc))} key={marc.id}>
+              <AccordionDetails onClick={() => handleChangeCars(marc)} key={marc.id}>
                 <Grid className={classes.grid} container alignItems="center" direction="row">
                   <CardMedia className={classes.car} image={getCarImg(marc.name)} component="img" />
                   <Typography className={classes.title} component="h2">
