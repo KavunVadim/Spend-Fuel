@@ -14,7 +14,7 @@ import {
 
 import { getCarImg, getCarLogo } from '../../helpers/imgController';
 import { changeCarMarc, changeBaseInfo } from '../../store/slices/sliceChoiceMarcCar';
-import storage from '../../helpers/storage';
+
 import arrCars from '../../db/arrCars.json';
 
 const useStyles = makeStyles((theme) => ({
